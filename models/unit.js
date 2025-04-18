@@ -42,6 +42,9 @@ const UnitSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
+  tenant: {
+    type: mongoose.Schema.Types.ObjectId, ref: 'Tenant'
+  }
 });
 
 module.exports = mongoose.model('Unit', UnitSchema);

@@ -10,7 +10,7 @@
   <div class="container my-5">
     <h2 class="mb-4">Unit Details</h2>
 
-    <div class="card shadow-sm">
+    <div class="card shadow-sm mb-4">
       <div class="card-body">
         <h5 class="card-title">Room ID: <%= unit.roomId %></h5>
 
@@ -23,12 +23,41 @@
           <li class="list-group-item"><strong>Water Connection:</strong> <%= unit.hasWaterConnection ? 'Yes' : 'No' %></li>
           <li class="list-group-item"><strong>Independent Toilet:</strong> <%= unit.hasIndependentToilet ? 'Yes' : 'No' %></li>
         </ul>
-
-        <div class="mt-4">
-          <a href="/unit/<%= unit._id %>/add-tenant" class="btn btn-primary">Add Tenant</a>
-        </div>
       </div>
     </div>
+
+    <% if (unit.isOccupied && unit.tenant) { %>
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h4 class="card-title">Tenant Details</h4>
+          <ul class="list-group list-group-flush mt-3">
+            <li class="list-group-item"><strong>Name:</strong> <%= unit.tenant.name %></li>
+            <li class="list-group-item"><strong>Email:</strong> <%= unit.tenant.email %></li>
+            <li class="list-group-item"><strong>Phone:</strong> <%= unit.tenant.phone %></li>
+            <li class="list-group-item"><strong>Business Name:</strong> <%= unit.tenant.nameOfBusiness %></li>
+            <li class="list-group-item"><strong>Nature of Business:</strong> <%= unit.tenant.natureOfBusiness %></li>
+            <li class="list-group-item"><strong>Rent:</strong> ₹<%= unit.tenant.rent %></li>
+            <li class="list-group-item"><strong>Advance:</strong> ₹<%= unit.tenant.advance %></li>
+            <li class="list-group-item"><strong>Agreement Duration:</strong> <%= unit.tenant.agreementStartDate %> to <%= unit.tenant.agreementEndDate %></li>
+            <li class="list-group-item"><strong>Annual Increment:</strong> <%= unit.tenant.annualIncrement %>%</li>
+          </ul>
+
+          <h5 class="mt-4">Documents:</h5>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><a href="/<%= unit.tenant.uploads.proofOfAddress %>" target="_blank">Proof of Address</a></li>
+            <li class="list-group-item"><a href="/<%= unit.tenant.uploads.proofOfBusiness %>" target="_blank">Proof of Business</a></li>
+            <li class="list-group-item"><a href="/<%= unit.tenant.uploads.proofOfIdentity %>" target="_blank">Proof of Identity</a></li>
+            <li class="list-group-item"><a href="/<%= unit.tenant.uploads.agreementDraft %>" target="_blank">Agreement Draft</a></li>
+            <li class="list-group-item"><a href="/<%= unit.tenant.uploads.agreementCopy %>" target="_blank">Agreement Copy</a></li>
+          </ul>
+        </div>
+      </div>
+    <% } else { %>
+      <div class="text-center">
+        <a href="/add-tenant/<%= unit._id %>" class="btn btn-primary mt-4">Add Tenant</a>
+      </div>
+    <% } %>
+
   </div>
 
 </body>

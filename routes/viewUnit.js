@@ -9,8 +9,8 @@ const Property = require('../models/property');
 // GET /unit/:id → Show unit details
 router.get('/:id', requiresAuth(), async (req, res) => {
   try {
-    const unit = await Unit.findById(req.params.id).populate('propertyId');
-
+    const unit = await Unit.findById(req.params.id).populate('propertyId').populate('tenant');
+   
     if (!unit) {
       return res.status(404).render('error', {
         message: 'Unit not found',

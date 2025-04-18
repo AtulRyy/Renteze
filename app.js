@@ -18,6 +18,8 @@ app.use(express.urlencoded({ extended: true })); // for form submissions
 app.use(express.json()); // for JSON body requests
 
 
+app.use('/uploads', express.static('uploads')); 
+
 // ROUTES
 const dashboardRoute=require('./routes/dashboardRoute')
 const profileCompletionRoute=require('./routes/profileCompletionRoute')
@@ -25,6 +27,7 @@ const createPropertyRoute=require('./routes/createPropertyRoute')
 const createUnitRoute=require('./routes/createUnit')
 const viewPropertyRoute=require('./routes/viewProperty')
 const viewUnitRoute=require('./routes/viewUnit')
+const addTenantRoute=require('./routes/addTenantRoute')
 
 
 app.use('/dashboard',dashboardRoute)
@@ -33,7 +36,7 @@ app.use('/create-property',createPropertyRoute)
 app.use('/create-room',createUnitRoute)
 app.use('/property',viewPropertyRoute)
 app.use('/unit',viewUnitRoute)
-
+app.use('/add-tenant',addTenantRoute)
 
 
 app.get('/', (req, res) => {

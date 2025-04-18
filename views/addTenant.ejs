@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create Tenant</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #f4f4f4;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    form {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    input[type="date"],
+    input[type="file"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .error {
+      color: red;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      margin-top: 25px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 5px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <h1>Create New Tenant</h1>
+
+  <% if (error) { %>
+    <div class="error"><%= error %></div>
+  <% } %>
+
+  <form action="/add-tenant/<%= unitId %>" method="POST" enctype="multipart/form-data">
+    <div class="section-title">Basic Details</div>
+    <label>Name:</label>
+    <input type="text" name="name" required />
+
+    <label>Email:</label>
+    <input type="email" name="email" required />
+
+    <label>Phone:</label>
+    <input type="text" name="phone" required />
+
+    <div class="section-title">Business Details</div>
+    <label>Business Name:</label>
+    <input type="text" name="nameOfBusiness" required />
+
+    <label>Nature of Business:</label>
+    <input type="text" name="natureOfBusiness" required />
+
+    <div class="section-title">Agreement & Rent</div>
+    <label>Rent Amount:</label>
+    <input type="number" name="rent" required />
+
+    <label>Advance Amount:</label>
+    <input type="number" name="advance" required />
+
+    <label>Agreement Start Date:</label>
+    <input type="date" name="agreementStartDate" required />
+
+    <label>Agreement End Date:</label>
+    <input type="date" name="agreementEndDate" required />
+
+    <label>Annual Increment (%):</label>
+    <input type="number" name="annualIncrement" required />
+
+    <div class="section-title">Upload Documents</div>
+    <label>Proof of Address (Aadhar):</label>
+    <input type="file" name="proofOfAddress" accept=".pdf,.jpg,.png" required />
+
+    <label>Proof of Business:</label>
+    <input type="file" name="proofOfBusiness" accept=".pdf,.jpg,.png" required />
+
+    <label>Proof of Identity:</label>
+    <input type="file" name="proofOfIdentity" accept=".pdf,.jpg,.png" required />
+
+    <label>Agreement Draft:</label>
+    <input type="file" name="agreementDraft" accept=".pdf" required />
+
+    <label>Agreement Copy:</label>
+    <input type="file" name="agreementCopy" accept=".pdf" required />
+
+    <button type="submit">Create Tenant</button>
+  </form>
+</body>
+</html>
