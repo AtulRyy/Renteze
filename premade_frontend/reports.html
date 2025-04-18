@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Sacred Heart Brothers</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="css/layout.css" rel="stylesheet" />
+    <link href="css/sidebar.css" rel="stylesheet" />
+    <link href="css/property.css" rel="stylesheet" />
+    <link href="css/reports.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+
+</head>
+
+<body class="sb-nav-fixed">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark">
+        <!-- Navbar Brand-->
+        <a class="navbar-brand ps-3" href="index.html"><img style="max-width:50px;" src="images/logo.webp" alt=""></a>
+        <!-- Sidebar Toggle-->
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
+                class="fas fa-bars"></i></button>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav" class="top-nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <a class="navbar-brand ps-3" href="index.html"><img src="images/welcome-logo.webp" alt="logo"></a>
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <a class="nav-link" href="admin.html">
+                            <div class="sb-nav-link-icon"><img src="images/layout/admin.webp" alt=""></div>
+                            Admin
+                        </a>
+                        <a class="nav-link" href="property.html">
+                            <div class="sb-nav-link-icon"><img src="images/layout/property.webp" alt=""></div>
+                            Property List
+                        </a>
+                        <a class="nav-link" href="tenent.html">
+                            <div class="sb-nav-link-icon"><img src="images/layout/tenant.webp" alt=""></div>
+                            Tenent
+                        </a>
+                        <a class="nav-link active" href="propertyreports.html">
+                            <div class="sb-nav-link-icon"><img src="images/layout/report.webp" alt=""></div>
+                            Reports
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            <main class="common-padding">
+                <section class="propertydetails-wrapper">
+                    <div class="container">
+                        <h5>Reports</h5>
+                        <ul class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="nav-nut-tab" data-bs-toggle="tab"
+                                    data-bs-target="#nav-nut" type="button" role="tab" aria-controls="nav-nut"
+                                    aria-selected="true"><span class="circle-1"></span>Occupied</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="nav-dia-tab" data-bs-toggle="tab" data-bs-target="#nav-dia"
+                                    type="button" role="tab" aria-controls="nav-dia" aria-selected="false"><span
+                                        class="circle-2"></span>Available</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="nav-non-tab" data-bs-toggle="tab" data-bs-target="#nav-non"
+                                    type="button" role="tab" aria-controls="nav-non" aria-selected="false"><span
+                                        class="circle-3"></span>Tenancy
+                                    Closing soon</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="nav-close-tab" data-bs-toggle="tab"
+                                    data-bs-target="#nav-close" type="button" role="tab" aria-controls="nav-close"
+                                    aria-selected="false"><span class="circle-4"></span>Queries and Concerns
+                                    Pending</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content p-3" id="nav-tabContent">
+                            <div class="tab-pane fade active show" id="nav-nut" role="tabpanel"
+                                aria-labelledby="nav-nut-tab">
+                                <div class="mt-5">
+                                    <h5>Tenant Report</h5>
+                                    <div class="report-row row align-items-center mt-5">
+                                        <div class="col-lg-3">
+                                            <label for="location">Search by tenant name / Shop No</label>
+                                        </div>
+                                        <div class="col-lg-9">
+                                            <input type="text" class="form-control tenant-box" id="location">
+                                        </div>
+                                    </div>
+                                    <div class="tenent-table mt-5">
+                                        <table class="table">
+                                            <thead class="">
+                                                <tr>
+                                                    <th scope="col">Tenant Name</th>
+                                                    <th scope="col">Shop No.</th>
+                                                    <th scope="col">Building/Property</th>
+                                                    <th scope="col">Tenancy Start</th>
+                                                    <th scope="col">Tenancy End</th>
+                                                    <th scope="col">Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Jon Doe</td>
+                                                    <td>1133</td>
+                                                    <td>Birds 1</td>
+                                                    <td>22/01/2023</td>
+                                                    <td>22/01/2024</td>
+                                                    <td><span class="circle-1"></span></td>
+                                                </tr>
+
+                                            </tbody>
+
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="nav-dia" role="tabpanel" aria-labelledby="nav-dia-tab">
+                                <div class="mt-5">
+                                    <h5>Tenant Report</h5>
+                                    <div class="report-row row align-items-center mt-5">
+                                        <div class="col-lg-3">
+                                            <label for="location">Search by tenant name / Shop No</label>
+                                        </div>
+                                        <div class="col-lg-9">
+                                            <input type="text" class="form-control tenant-box" id="location">
+                                        </div>
+                                    </div>
+                                    <div class="tenent-table mt-5">
+                                        <table class="table">
+
+                                            <thead class="">
+                                                <tr>
+                                                    <th scope="col">Tenant Name</th>
+                                                    <th scope="col">Shop No.</th>
+                                                    <th scope="col">Building/Property</th>
+                                                    <th scope="col">Tenancy Start</th>
+                                                    <th scope="col">Tenancy End</th>
+                                                    <th scope="col">Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Jon Doe</td>
+                                                    <td>1133</td>
+                                                    <td>Birds 1</td>
+                                                    <td>22/01/2023</td>
+                                                    <td>22/01/2024</td>
+                                                    <td><span class="circle-2"></span></td>
+                                                </tr>
+
+                                            </tbody>
+
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="nav-non" role="tabpanel" aria-labelledby="nav-non-tab">
+                                <div class="mt-5">
+                                    <h5>Tenant Report</h5>
+                                    <div class="report-row row align-items-center mt-5">
+                                        <div class="col-lg-3">
+                                            <label for="location">Search by tenant name / Shop No</label>
+                                        </div>
+                                        <div class="col-lg-9">
+                                            <input type="text" class="form-control tenant-box" id="location">
+                                        </div>
+                                    </div>
+                                    <div class="tenent-table mt-5">
+                                        <table class="table table-striped">
+
+                                            <thead class="">
+                                                <tr>
+                                                    <th scope="col">Tenant Name</th>
+                                                    <th scope="col">Shop No.</th>
+                                                    <th scope="col">Building/Property</th>
+                                                    <th scope="col">Tenancy Start</th>
+                                                    <th scope="col">Tenancy End</th>
+                                                    <th scope="col">Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Jon Doe</td>
+                                                    <td>1133</td>
+                                                    <td>Birds 1</td>
+                                                    <td>22/01/2023</td>
+                                                    <td>22/01/2024</td>
+                                                    <td><span class="circle-3"></span></td>
+                                                </tr>
+
+                                            </tbody>
+
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="nav-close" role="tabpanel" aria-labelledby="nav-close-tab">
+                                <div class="mt-5">
+                                    <h5>Tenant Report</h5>
+                                    <div class="report-row row align-items-center mt-5">
+                                        <div class="col-lg-3">
+                                            <label for="location">Search by tenant name / Shop No</label>
+                                        </div>
+                                        <div class="col-lg-9">
+                                            <input type="text" class="form-control tenant-box" id="location">
+                                        </div>
+                                    </div>
+                                    <div class="tenent-table mt-5">
+                                        <table class="table">
+
+                                            <thead class="">
+                                                <tr>
+                                                    <th scope="col">Tenant Name</th>
+                                                    <th scope="col">Shop No.</th>
+                                                    <th scope="col">Building/Property</th>
+                                                    <th scope="col">Tenancy Start</th>
+                                                    <th scope="col">Tenancy End</th>
+                                                    <th scope="col">Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Jon Doe</td>
+                                                    <td>1133</td>
+                                                    <td>Birds 1</td>
+                                                    <td>22/01/2023</td>
+                                                    <td>22/01/2024</td>
+                                                    <td><span class="circle-4"></span></td>
+                                                </tr>
+
+                                            </tbody>
+
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    crossorigin="anonymous"></script>
+<script src="js/scripts.js"></script>
+
+</html>

@@ -1,0 +1,19 @@
+.property-img {
+    position: relative;
+}
+
+.property-main img {
+    max-width: 100%;
+}
+
+.bottom-card {
+    background-color: #7A040E;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 6px 0px 6px 0px;
+}
+
+.bottom-card h6 {
+    text-align: center;
+}

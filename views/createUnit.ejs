@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Unit</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      padding: 2rem;
+      color: #333;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      color: #007bff;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      margin: 1rem 0 0.3rem;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+    }
+
+    input[type="checkbox"] {
+      margin-right: 0.5rem;
+    }
+
+    .checkbox-group {
+      margin: 0.5rem 0 1rem;
+    }
+
+    .alert-danger {
+      background-color: #f8d7da;
+      color: #842029;
+      padding: 1rem;
+      border-radius: 5px;
+      margin-bottom: 1rem;
+    }
+
+    button {
+      width: 100%;
+      padding: 0.75rem;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Create Unit for: <%= propertyName %></h1>
+
+    <% if (error) { %>
+      <div class="alert-danger"><%= error %></div>
+    <% } %>
+
+    <form action="/create-room/<%= propertyId %>" method="POST">
+      <input type="hidden" name="propertyId" value="<%= propertyId %>">
+
+      <label for="roomId">Room ID</label>
+      <input type="text" name="roomId" id="roomId" value="<%= formData.roomId || '' %>" required />
+
+      <label for="roomArea">Room Area (sq. ft)</label>
+      <input type="number" name="roomArea" id="roomArea" value="<%= formData.roomArea || '' %>" required />
+
+      <label for="floor">Floor Number</label>
+      <input type="number" name="floor" id="floor" value="<%= formData.floor || '' %>" required />
+
+      <label for="rentCost">Rent Cost</label>
+      <input type="number" name="rentCost" id="rentCost" value="<%= formData.rentCost || '' %>" required />
+
+      <label for="maintenanceCost">Maintenance Cost</label>
+      <input type="number" name="maintenanceCost" id="maintenanceCost" value="<%= formData.maintenanceCost || '' %>" required />
+
+      <label for="bescomNumber">BESCOM Number</label>
+      <input type="text" name="bescomNumber" id="bescomNumber" value="<%= formData.bescomNumber || '' %>" required />
+
+      <div class="checkbox-group">
+        <label>
+          <input type="checkbox" name="hasWaterConnection" <%= formData.hasWaterConnection ? 'checked' : '' %> />
+          Water Connection Available
+        </label>
+
+        <label>
+          <input type="checkbox" name="hasIndependentToilet" <%= formData.hasIndependentToilet ? 'checked' : '' %> />
+          Independent Toilet
+        </label>
+      </div>
+
+      <button type="submit">Create Unit</button>
+    </form>
+  </div>
+</body>
+</html>

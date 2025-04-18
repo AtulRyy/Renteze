@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Dashboard</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 2rem;
+        color: #333;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .property-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .property-card {
+        background-color: #fff;
+        padding: 1rem;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .property-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .property-card h3 {
+        margin: 0 0 0.5rem;
+        color: #007bff;
+      }
+
+      .no-properties {
+        font-style: italic;
+        color: #666;
+      }
+
+      .add-btn {
+        padding: 0.5rem 1rem;
+        background-color: #007bff;
+        border: none;
+        border-radius: 6px;
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background 0.2s ease;
+      }
+
+      .add-btn:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>Welcome, <%= name %></h1>
+      <a href="/create-property" class="add-btn">+ Add Property</a>
+    </header>
+
+    <h2>Your Properties</h2>
+
+    <% if (properties.length > 0) { %>
+    <div class="property-grid">
+      <% properties.forEach(function(property) { %>
+      <a href="/property/<%= property._id %>" class="property-card">
+        <h3><%= property.name %></h3>
+        <p><strong>Address:</strong> <%= property.address %></p>
+        <p><strong>Location:</strong> <%= property.location %></p>
+      </a>
+      <% }); %>
+    </div>
+    <% } else { %>
+      <p class="no-properties">You don't have any properties yet.</p>
+    <% } %>
+  </body>
+</html>

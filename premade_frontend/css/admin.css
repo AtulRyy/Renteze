@@ -1,0 +1,42 @@
+.admin-details {
+    background: #fff;
+    border: 1px solid #AC0D1B;
+    opacity: 1;
+    padding: 82px 0px 60px 0px;
+    text-align: center;
+}
+
+.admin-space {
+    padding-top: 198px;
+}
+
+.admin-details h4 {
+    padding-top: 50px;
+}
+
+.admin-wrapper a {
+    text-decoration: none;
+}
+
+.admin-details:hover {
+    background: #FFFFFF;
+    box-shadow: 0px 5px 10px #00000029;
+    border-top: 3px solid #AC0D1B !important;
+    border: none;
+}
+
+.admin-details h4:hover {
+    color: #AC0D1B;
+}
+
+.admin-details .hover-icon {
+    display: none;
+}
+
+.admin-details:hover .static-icon {
+    display: none;
+}
+
+.admin-details:hover .hover-icon {
+    display: block;
+}

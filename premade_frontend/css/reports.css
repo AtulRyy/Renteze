@@ -1,0 +1,84 @@
+.status-box {
+    background-color: #F6F6F6;
+    padding: 15px;
+    border-radius: 24px;
+}
+
+
+.tenant-box {
+    width: 460px;
+    background-color: #DBDBDB;
+}
+
+.propertydetails-wrapper .nav {
+    margin-left: inherit;
+}
+
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+    border: none;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #0000001F;
+    border-radius: 24px;
+    opacity: 1;
+    color: #AC0D1B;
+}
+
+.nav-tabs .nav-link {
+    background: #F6F6F6 0% 0% no-repeat padding-box;
+    border-radius: 24px;
+    opacity: 1;
+    margin-right: 10px;
+    color: #AC0D1B;
+    display: flex;
+    align-items: center;
+}
+
+.nav-tabs {
+    border-bottom: inherit;
+}
+
+.nav-tabs .nav-link:hover,
+.nav-tabs .nav-link:focus {
+    border: none;
+}
+
+.circle-1 {
+    width: 25px;
+    height: 25px;
+    background: #4EA72E 0% 0% no-repeat padding-box;
+    opacity: 1;
+    border-radius: 50%;
+    display: block;
+    margin-right: 10px;
+}
+
+.circle-2 {
+    width: 25px;
+    height: 25px;
+    background: #FF0000 0% 0% no-repeat padding-box;
+    opacity: 1;
+    border-radius: 50%;
+    display: block;
+    margin-right: 10px;
+}
+
+.circle-3 {
+    width: 25px;
+    height: 25px;
+    background: #E97132 0% 0% no-repeat padding-box;
+    opacity: 1;
+    border-radius: 50%;
+    display: block;
+    margin-right: 10px;
+}
+
+.circle-4 {
+    width: 25px;
+    height: 25px;
+    background: #4EA72E 0% 0% no-repeat padding-box;
+    opacity: 1;
+    border-radius: 50%;
+    display: block;
+    margin-right: 10px;
+}

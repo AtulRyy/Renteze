@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Sacred Heart Brothers</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="css/layout.css" rel="stylesheet" />
+    <link href="css/sidebar.css" rel="stylesheet" />
+    <link href="css/property.css" rel="stylesheet" />
+    <link href="css/addproperty.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+
+</head>
+
+<body class="sb-nav-fixed">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark">
+        <!-- Navbar Brand-->
+        <a class="navbar-brand ps-3" href="index.html"><img style="max-width:50px;" src="images/logo.webp" alt=""></a>
+        <!-- Sidebar Toggle-->
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
+                class="fas fa-bars"></i></button>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <a class="navbar-brand ps-3" href="index.html"><img src="images/welcome-logo.webp" alt="logo"></a>
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <a class="nav-link" href="admin.html">
+                            <div class="sb-nav-link-icon"><img src="images/layout/admin.webp" alt=""></div>
+                            Admin
+                        </a>
+                        <a class="nav-link" href="property.html">
+                            <div class="sb-nav-link-icon"><img src="images/layout/property.webp" alt=""></div>
+                            Property List
+                        </a>
+                        <a class="nav-link active" href="tenent.html">
+                            <div class="sb-nav-link-icon"><img src="images/layout/tenant.webp" alt=""></div>
+                            Tenent
+                        </a>
+                        <a class="nav-link" href="propertyreports.html">
+                            <div class="sb-nav-link-icon"><img src="images/layout/report.webp" alt=""></div>
+                            Reports
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            <main class="common-padding">
+                <section class="propertydetails-wrapper">
+                    <div class="container">
+                        <div class="main-property">
+                            <h5>Tenant</h5>
+                            <div class="addproperty-box my-4">
+                                <div class="add-profile d-flex justify-content-end">
+                                    <i class="bi bi-person-circle"></i>
+                                </div>
+                                <div class="row g-3">
+                                    <div class="col-lg-3">
+                                        <label for="number">Unit No.</label>
+                                    </div>
+                                    <div class="col-lg-9">
+                                        <input type="number" class="form-control" id="number">
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label for="number">Unit Rent</label>
+                                    </div>
+                                    <div class="col-lg-9">
+                                        <input type="number" class="form-control" id="number">
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label for="fee">Unit Maintenance Fee</label>
+                                    </div>
+                                    <div class="col-lg-9">
+                                        <input type="number" class="form-control" id="number">
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label for="date">Tenancy Start</label>
+                                    </div>
+                                    <div class="col-lg-9">
+                                        <input type="date" class="form-control" id="date">
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label for="text">Rebewal</label>
+                                    </div>
+                                    <div class="col-lg-9">
+                                        <input type="text" class="form-control" id="text">
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label for="number">Contact Primary</label>
+                                    </div>
+                                    <div class="col-lg-9">
+                                        <a href="#"><i class="edit-icon bi bi-pencil-square"></i></a>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label for="number">Contact Secondary</label>
+                                    </div>
+                                    <div class="col-lg-9">
+                                        <a href="#"><i class="edit-icon bi bi-pencil-square"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-btn mt-3 d-flex justify-content-end">
+                            <a href="propertyreports.html"><button>Submit</button></a>
+                        </div>
+                        <div class="addproperty-table">
+                            <h5>Payment History</h5>
+                            <div class="tenent-table">
+                                <table class="table mt-4">
+                                    <thead class="pt-5">
+                                        <tr>
+                                            <th scope="col">Sl.No</th>
+                                            <th scope="col">Invoice Date</th>
+                                            <th scope="col">Payment Description</th>
+                                            <th scope="col">Amount</th>
+                                            <th scope="col">Transaction Mode</th>
+                                            <th scope="col">Transaction Id</th>
+                                            <th scope="col">Paid On</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1.</td>
+                                            <td>01/05/2023</td>
+                                            <td>Rent for the month of June</td>
+                                            <td>11900</td>
+                                            <td>Online</td>
+                                            <td>011HNI11</td>
+                                            <td>24/11/2023</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2.</td>
+                                            <td>01/05/2023</td>
+                                            <td>Rent for the month of June</td>
+                                            <td>11900</td>
+                                            <td>Online</td>
+                                            <td>011HNI11</td>
+                                            <td>24/11/2023</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3.</td>
+                                            <td>01/05/2023</td>
+                                            <td>Rent for the month of June</td>
+                                            <td>11900</td>
+                                            <td>Online</td>
+                                            <td>011HNI11</td>
+                                            <td>24/11/2023</td>
+                                        </tr>
+                                        <tr>
+                                            <td>4.</td>
+                                            <td>01/05/2023</td>
+                                            <td>Rent for the month of June</td>
+                                            <td>11900</td>
+                                            <td>Pay Now</td>
+                                            <td>011HNI11</td>
+                                            <td>24/11/2023</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="addproperty-table mt-5">
+                            <h5>Communication</h5>
+                            <div class="tenent-table">
+                                <table class="table mt-4">
+                                    <thead class="pt-5">
+                                        <tr>
+                                            <th scope="col">Sl.No</th>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">Subject</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1.</td>
+                                            <td>01/04/2023</td>
+                                            <td><a class="hover-line" href="#">Water seepage</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>2.</td>
+                                            <td>01/04/2023</td>
+                                            <td><a class="hover-line" href="#">Water seepage</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>3.</td>
+                                            <td>01/04/2023</td>
+                                            <td><a class="hover-line" href="#">Water seepage</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>4.</td>
+                                            <td>01/04/2023</td>
+                                            <td><a class="hover-line" href="#">Water seepage</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    crossorigin="anonymous"></script>
+<script src="js/scripts.js"></script>
+
+</html>

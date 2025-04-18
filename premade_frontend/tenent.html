@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Sacred Heart Brothers</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="css/layout.css" rel="stylesheet" />
+    <link href="css/sidebar.css" rel="stylesheet" />
+    <link href="css/property.css" rel="stylesheet" />
+    <link href="css/tenant.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+
+</head>
+
+<body class="sb-nav-fixed">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark">
+        <!-- Navbar Brand-->
+        <a class="navbar-brand ps-3" href="index.html"><img style="max-width:50px;" src="images/logo.webp" alt=""></a>
+        <!-- Sidebar Toggle-->
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
+                class="fas fa-bars"></i></button>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <a class="navbar-brand ps-3" href="index.html"><img src="images/welcome-logo.webp" alt="logo"></a>
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <a class="nav-link" href="admin.html">
+                            <div class="sb-nav-link-icon"><img src="images/layout/admin.webp" alt=""></div>
+                            Admin
+                        </a>
+                        <a class="nav-link" href="property.html">
+                            <div class="sb-nav-link-icon"><img src="images/layout/property.webp" alt=""></div>
+                            Property List
+                        </a>
+                        <a class="nav-link active" href="tenent.html">
+                            <div class="sb-nav-link-icon"><img src="images/layout/tenant.webp" alt=""></div>
+                            Tenent
+                        </a>
+                        <a class="nav-link" href="propertyreports.html">
+                            <div class="sb-nav-link-icon"><img src="images/layout/report.webp" alt=""></div>
+                            Reports
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            <main class="common-padding">
+                <section class="propertydetails-wrapper">
+                    <div class="container">
+                        <div class="main-property">
+                            <h5>Team Management</h5>
+                            <div class="row top-row mt-5">
+                                <div class="col-lg-4">
+                                    <div class="main-input d-flex align-items-center">
+                                        <div class="me-3">
+                                            <label for="name">Property Name</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <select class="form-select" id="name">
+                                                <option>Birds 1</option>
+                                                <option>Birds 2</option>
+                                                <option>Birds 3</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="main-input d-flex align-items-center">
+                                        <div class="me-3">
+                                            <label for="number">Room No.</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <select class="form-select" id="number">
+                                                <option>11</option>
+                                                <option>12</option>
+                                                <option>13</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="main-input d-flex align-items-center">
+                                        <div class="me-3">
+                                            <label for="name">Area in SqFt:</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <select class="form-select" id="name">
+                                                <option>500 SqFt</option>
+                                                <option>1800 SqFt</option>
+                                                <option>2500 SqFt</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tenant-main mt-5">
+                            <div class="row g-3">
+                                <div class="col-lg-3">
+                                    <label for="Rent">Rent</label>
+                                </div>
+                                <div class="col-lg-9">
+                                    <div class="row">
+                                        <div class="col">
+                                            <input type="rent" class="form-control" id="exampleFormControlInput1">
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="col-lg-3">
+                                    <label for="date">Agreement Start Date</label>
+                                </div>
+                                <div class="col-lg-9">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <input type="date" class="form-control" id="start-date">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-3">
+                                    <label for="date">Agreement End Date</label>
+                                </div>
+                                <div class="col-lg-9">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <input type="date" class="form-control" id="End-date">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-3">
+                                    <label for="increment">Increment Agreed</label>
+                                </div>
+                                <div class="col-lg-9">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <input type="text" class="form-control" id="increment-agreed">
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="main-input d-flex align-items-center">
+                                                <label class="me-3 label-black" for="rupees">Rupees</label>
+                                                <input type="number" class="form-control" id="rupees">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div>
+                                                <div class="main-input d-flex align-items-center">
+                                                    <label class="me-3 label-black" for="percentage">Percentage</label>
+                                                    <input type="number" class="form-control" id="percentage">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-3">
+                                    <label for="name">Name of the Tenant</label>
+                                </div>
+                                <div class="col-lg-9">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <input type="text" class="form-control" id="text">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-3">
+                                    <label for="name">Referred by</label>
+                                </div>
+                                <div class="col-lg-9">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="d-flex">
+                                                <input type="number" class="form-control me-3" id="number">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div class="main-input d-flex align-items-center">
+                                                <label class="me-3 label-black" for="number">Referrer
+                                                    Contact</label>
+                                                <input type="number" class="form-control" id="number">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <label for="phone">Contact Details (Communication)</label>
+                                </div>
+                                <div class="col-lg-9">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="main-input d-flex align-items-center justify-content-between">
+                                                <input type="text" class="form-control address-box" id="location"
+                                                    placeholder="Address line 1">
+                                                <div class="top d-flex align-items-center">
+                                                    <input type="mail" class="form-control last-box" id="address"
+                                                        placeholder="Email">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div
+                                                class="mt-3 main-input  d-flex align-items-center justify-content-between">
+                                                <input type="text" class="form-control address-box" id="location"
+                                                    placeholder="Address line 2">
+                                                <div class="top d-flex align-items-center">
+                                                    <input type="mail" class="form-control last-box" id="address"
+                                                        placeholder="Phone">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <label for="phone">Contact (Secondary) Address</label>
+                                </div>
+                                <div class="col-lg-9">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="main-input d-flex align-items-center justify-content-between">
+                                                <input type="text" class="form-control address-box" id="location"
+                                                    placeholder="Address line 2">
+                                                <div class="top d-flex align-items-center">
+                                                    <input type="mail" class="form-control last-box" id="address"
+                                                        placeholder="Email">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div
+                                                class="mt-3 main-input d-flex align-items-center justify-content-between">
+                                                <input type="text" class="form-control address-box" id="location"
+                                                    placeholder="Address line 2">
+                                                <div class="top d-flex align-items-center">
+                                                    <input type="mail" class="form-control last-box" id="address"
+                                                        placeholder="Phone">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="col-lg-3">
+                                    <label for="text">Name of the Business</label>
+                                </div>
+                                <div class="col-lg-9">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div>
+                                                <input type="text" class="form-control me-3" id="increment-agreed">
+                                            </div>
+
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div class="main-input d-flex align-items-center">
+                                                <label class="label-black me-3" for="rupees">Nature of
+                                                    Business</label>
+                                                <input type="text" class="form-control" id="text">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-3">
+                                    <label for="address">Proof of Address</label>
+                                </div>
+                                <div class="col-lg-9">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="">
+                                                <input type="text" class="form-control" id="address">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div>
+                                                <label class="uploadFile">
+                                                    <i class="bi bi-upload"></i>
+                                                    <span class="filename">Upload</span>
+                                                    <input type="file" class="inputfile form-control" name="file">
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <label for="document">Proof of Business</label>
+                                </div>
+                                <div class="col-lg-9">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="">
+                                                <input type="text" class="form-control" id="address">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div>
+                                                <label class="uploadFile">
+                                                    <i class="bi bi-upload"></i>
+                                                    <span class="filename">Upload</span>
+                                                    <input type="file" class="inputfile form-control" name="file">
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <label for="document">Proof of Identity</label>
+                                </div>
+                                <div class="col-lg-9">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="">
+                                                <input type="text" class="form-control" id="address">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div>
+                                                <label class="uploadFile">
+                                                    <i class="bi bi-upload"></i>
+                                                    <span class="filename">Upload</span>
+                                                    <input type="file" class="inputfile form-control" name="file">
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <label for="xerox">Agreement Copy</label>
+                                </div>
+                                <div class="col-lg-9">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="">
+                                                <input type="text" class="form-control" id="address">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div>
+                                                <label class="uploadFile">
+                                                    <i class="bi bi-upload"></i>
+                                                    <span class="filename">Upload</span>
+                                                    <input type="file" class="inputfile form-control" name="file">
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-3">
+                                    <label for="text">Agreement Draft</label>
+                                </div>
+                                <div class="col-lg-9">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="">
+                                                <input type="text" class="form-control" id="address">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div class="d-flex align-items-center">
+                                                <label class="uploadFile">
+                                                    <i class="bi bi-upload"></i>
+                                                    <span class="filename">Upload</span>
+                                                    <input type="file" class="inputfile form-control" name="file">
+                                                </label>
+                                                <div class="download">
+                                                    <button> <i class="bi bi-download"></i>Download</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="col-lg-3">
+                                    <label for="number">BESCOM Number</label>
+                                </div>
+                                <div class="col-lg-9">
+                                    <input type="number" class="form-control" id="number">
+                                </div>
+                                <div class="col-lg-3">
+                                    <label for="text">Maintenance Charges Agreed</label>
+                                </div>
+                                <div class="col-lg-9">
+                                    <input type="number" class="form-control" id="text">
+                                </div>
+                                <div class="col-lg-3">
+                                    <label for="number">Water Charges</label>
+                                </div>
+                                <div class="col-lg-9">
+                                    <input type="number" class="form-control" id="number">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-btn mt-3 d-flex justify-content-end">
+                            <a href="manageroom.html"><button>Submit</button></a>
+                        </div>
+                        <div class="tenent-table">
+                            <h5>Payment History</h5>
+                            <table class="table mt-3">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">S.No</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Amount</th>
+                                        <th scope="col">Mode of payment</th>
+                                        <th scope="col">Transaction ID</th>
+                                        <th scope="col">Download receipt</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1.</td>
+                                        <td>25/1/2024</td>
+                                        <td>Rent January 2024</td>
+                                        <td>12000</td>
+                                        <td>Cash</td>
+                                        <td>77XXXX999</td>
+                                        <td><i class="bi bi-cloud-download-fill"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2.</td>
+                                        <td>25/1/2024</td>
+                                        <td>Rent February 2024</td>
+                                        <td>12000</td>
+                                        <td>Online</td>
+                                        <td>77XXXX999</td>
+                                        <td><i class="bi bi-cloud-download-fill"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3.</td>
+                                        <td>25/1/2024</td>
+                                        <td>Maintenance</td>
+                                        <td>1000</td>
+                                        <td>Cash</td>
+                                        <td>77XXXX999</td>
+                                        <td><i class="bi bi-cloud-download-fill"></i></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tenent-table mt-5">
+                            <h5>Communication</h5>
+                            <table class="table mt-3">
+
+                                <thead>
+                                    <tr>
+                                        <th scope="col"></th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Subject</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1.</td>
+                                        <td>25/1/2024</td>
+                                        <td><a class="hover-line" href="">Water Seepage in the Building</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2.</td>
+                                        <td>25/1/2024</td>
+                                        <td><a class="hover-line" href="">Power outage in the Building</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    crossorigin="anonymous"></script>
+<script src="js/scripts.js"></script>
+<script>
+    $("#btnImportData").on("click", function (e) {
+        var fileDialog = $('<input type="file">');
+        fileDialog.click();
+        fileDialog.on("change", onFileSelected);
+        return false;
+    });
+
+    var onFileSelected = function (e) {
+        console.log($(this)[0].files);
+    };
+</script>
+
+</html>

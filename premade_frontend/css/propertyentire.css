@@ -1,0 +1,25 @@
+.propertyentire-box {
+    background-color: #F3F3F3;
+    border-radius: 13px;
+    opacity: 1;
+    padding: 30px;
+}
+
+.propertyentire-box label {
+    color: #7A040E;
+}
+
+.form-control,
+.datatable-input {
+    width: 130px;
+}
+
+.tenent-table td {
+    font-weight: 300;
+    font-size: 16px;
+}
+
+.tenant-table .table th {
+    font-weight: 500;
+    font-size: 16px;
+}

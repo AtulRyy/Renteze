@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= property.name %> | Property Details</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f7f7f7;
+        padding: 2rem;
+        color: #333;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: auto;
+        background-color: #fff;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      h2 {
+        margin-top: 0;
+        color: #007bff;
+      }
+
+      p {
+        margin: 0.5rem 0;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      li {
+        margin: 0.75rem 0;
+        padding: 0.75rem;
+        background-color: #f0f0f0;
+        border-radius: 6px;
+        transition: background 0.2s ease;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      li:hover {
+        background-color: #e0e0e0;
+      }
+
+      .status {
+        font-weight: bold;
+        margin-left: 1rem;
+      }
+
+      .occupied {
+        color: red;
+      }
+
+      .vacant {
+        color: green;
+      }
+
+      .add-btn {
+        margin-top: 2rem;
+        display: inline-block;
+        padding: 0.6rem 1rem;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .add-btn:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2><%= property.name %></h2>
+      <p><strong>Address:</strong> <%= property.address %></p>
+      <p><strong>Location:</strong> <%= property.location %></p>
+
+      <h3>Units:</h3>
+      <ul>
+        <% if (property.units.length > 0) { %>
+          <% property.units.forEach(unit => { %>
+            <a href="/unit/<%= unit._id %>">
+              <li>
+                Unit <%= unit.unitNumber %> - Floor <%= unit.floor %>
+                <% if (unit.isOccupied) { %>
+                  <span class="status occupied">(Occupied)</span>
+                <% } else { %>
+                  <span class="status vacant">(Vacant)</span>
+                <% } %>
+              </li>
+            </a>
+          <% }) %>
+        <% } else { %>
+          <li>No units added yet.</li>
+        <% } %>
+      </ul>
+
+      <a href="/create-room/<%= property._id %>" class="add-btn">+ Create Room</a>
+    </div>
+  </body>
+</html>

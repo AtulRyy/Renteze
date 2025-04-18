@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Property</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f2f4f7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .form-container {
+      background-color: #fff;
+      padding: 2rem 2.5rem;
+      border-radius: 8px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 500px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #007bff;
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+      margin-bottom: 0.3rem;
+      font-weight: 600;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 0.6rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    button {
+      width: 100%;
+      padding: 0.75rem;
+      margin-top: 1rem;
+      background-color: #007bff;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .alert-danger {
+      background-color: #fdecea;
+      color: #b02a37;
+      padding: 0.75rem;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      text-align: center;
+      font-weight: 500;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="form-container">
+    <h1>Hello <%= name %></h1>
+
+    <% if (error) { %>
+      <div class="alert-danger"><%= error %></div>
+    <% } %>
+
+    <form action="/create-property" method="POST">
+      <label for="propertyName">Property Name</label>
+      <input
+        type="text"
+        id="propertyName"
+        name="propertyName"
+        placeholder="e.g. Green Heights"
+        value="<%= formData?.propertyName || '' %>"
+        required
+      />
+
+      <label for="propertyAddress">Address</label>
+      <input
+        type="text"
+        id="propertyAddress"
+        name="propertyAddress"
+        placeholder="e.g. 123 MG Road"
+        value="<%= formData?.propertyAddress || '' %>"
+        required
+      />
+
+      <label for="propertyLocation">Location</label>
+      <input
+        type="text"
+        id="propertyLocation"
+        name="propertyLocation"
+        placeholder="e.g. Bangalore"
+        value="<%= formData?.propertyLocation || '' %>"
+        required
+      />
+
+      <button type="submit">Create Property</button>
+    </form>
+  </div>
+</body>
+</html>

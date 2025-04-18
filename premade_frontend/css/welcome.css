@@ -1,0 +1,42 @@
+.welcome-wrapper {
+    background-image: url(../images/welcome-bg.webp);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    background-color: #AC0D1B;
+}
+
+.welcome-content {
+    padding-top: 80px;
+}
+
+.welcome-content p {
+    padding-top: 2rem;
+    max-width: 58%;
+    margin: 0 auto;
+    color: #fff;
+}
+
+.welcome-form {
+    background-color: rgb(9, 36, 70, 0.4);
+    padding: 30px 40px 35px 45px;
+    max-width: 35%;
+    margin: 0 auto;
+    opacity: 0.9;
+}
+
+.welcome-form label {
+    color: #fff;
+    opacity: 76%;
+    font-size: 14px;
+    font-weight: 200;
+}
+
+.welcome-form .form-control {
+    border-radius: inherit !important;
+}
+
+.common-btn button {
+    width: 100%;
+}

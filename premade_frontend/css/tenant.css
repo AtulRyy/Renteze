@@ -1,0 +1,105 @@
+.tenant-main {
+    background-color: #F3F3F3;
+    border-radius: 13px;
+    opacity: 1;
+    padding: 30px;
+}
+
+.form-select,
+.datatable-selector {
+    width: 200px;
+}
+
+.form-control,
+.datatable-input {
+    width: 150px;
+    border-radius: inherit;
+}
+
+.tenant-main label {
+    color: #AC0D1B;
+}
+
+.hover-line {
+    color: #000 !important;
+}
+
+.hover-line:hover {
+    color: #AC0D1B !important;
+}
+
+.tenant-main .label-black {
+    color: #000000;
+}
+
+.address-box {
+    width: 600px !important;
+}
+
+.last-box {
+    width: 250px;
+}
+
+.uploadFile {
+    width: 150px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 0.5px solid #ACACAC;
+    opacity: 1;
+    font-size: 16px;
+    line-height: 23px;
+    overflow: hidden;
+    padding: 5px 30px;
+    position: relative;
+    resize: none;
+}
+
+.uploadFile i {
+    color: #000;
+}
+
+.uploadFile span {
+    color: #000;
+    font-size: 14px;
+    padding-left: 10px;
+}
+
+.uploadFile [type=file] {
+    cursor: pointer !important;
+    display: block;
+    font-size: 999px;
+    filter: alpha(opacity=0);
+    min-height: 100%;
+    min-width: 100%;
+    opacity: 0;
+    position: absolute;
+    right: 0px;
+    text-align: right;
+    top: 0px;
+    z-index: 1;
+}
+
+.download button {
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 0.5px solid #ACACAC;
+    opacity: 1;
+    color: #000;
+    padding: 5px 30px;
+    font-size: 14px;
+    margin-left: 15px;
+}
+
+.download button i {
+    color: #000;
+    padding-right: 10px;
+    font-size: 16px;
+}
+
+.tenent-table td {
+    font-weight: 300;
+    font-size: 16px;
+}
+
+.tenant-table .table th {
+    font-weight: 500;
+    font-size: 16px;
+}

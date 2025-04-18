@@ -1,0 +1,48 @@
+.property-listimg {
+    position: relative;
+}
+
+.list-card {
+    position: absolute;
+    bottom: 0;
+    background-color: #7A040E;
+    border-radius: 0px 0px 6px 6px;
+    opacity: 1;
+    width: 100%;
+    border-bottom: 9px solid #7A040E;
+}
+
+.property-listimg:hover .overlay {
+    display: block;
+
+}
+
+.overlay {
+    display: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.7;
+    background-color: #000;
+}
+
+.property-listimg:hover .bottom-card {
+    display: block;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    background: #AC0D1B !important;
+    opacity: 1.0;
+}
+
+.bottom-card {
+    display: none;
+}
+
+.bottom-card h5 {
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+    padding: 5px 0px 0px 0px;
+}

@@ -1,0 +1,23 @@
+.communication-box p {
+    color: #000000;
+    font-weight: 300;
+    font-size: 16px;
+}
+
+.modal-body {
+    background-color: #F6F6F6;
+    padding: 25px;
+}
+
+.modal-header {
+    background-color: #F6F6F6;
+    border: inherit;
+}
+
+.propertydetails-wrapper a {
+    color: #000;
+}
+
+.propertydetails-wrapper a:hover {
+    color: #AC0D1B;
+}

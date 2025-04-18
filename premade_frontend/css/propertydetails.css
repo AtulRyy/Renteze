@@ -1,0 +1,79 @@
+.property-location i {
+    color: #AC0D1B;
+    padding-right: 10px;
+}
+
+.property-location span {
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    color: #092446;
+}
+
+.main-box {
+    background-color: #F6F6F6;
+    padding: 15px 45px 25px 65px;
+}
+
+.main-box span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+}
+
+.main-box i {
+    font-size: 52px;
+}
+
+.main-box .green {
+    color: #008D13;
+}
+
+.main-box .red {
+    color: #FF0000;
+}
+
+.main-box .yellow {
+    color: #FEC000;
+}
+
+.construction-map {
+    position: relative;
+}
+
+.construction-map .nav {
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #C9C9C9;
+    border-radius: 16px 16px 16px 16px;
+    opacity: 1;
+    position: absolute;
+    left: 0;
+    bottom: -7%;
+    right: 0;
+    max-width: 26%;
+    margin: 0 auto;
+}
+
+.construction-map .nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+    font-weight: 200;
+}
+
+.construction-map .nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+    background-color: #AC0D1B;
+    color: #fff;
+    border-radius: 16px;
+}
+
+.nav-tabs .nav-link:hover,
+.nav-tabs .nav-link:focus {
+    border: inherit;
+    border-radius: 16px;
+}
+
+.nav-tabs .nav-link {
+    color: #092446;
+    font-weight: 400;
+}

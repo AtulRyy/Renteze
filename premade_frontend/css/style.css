@@ -1,0 +1,624 @@
+body {
+    font-family: "Lexend", sans-serif;
+}
+
+h1 {
+    color: #AC0D1B;
+}
+
+h3 {
+    font-size: 50px;
+    color: #fff;
+    font-weight: 400;
+}
+
+h4 {
+    font-size: 30px;
+    color: #092446;
+    font-weight: 400;
+}
+
+h5 {
+    font-size: 26px;
+    color: #AC0D1B;
+    font-weight: 400;
+}
+
+h6 {
+    font-size: 20px;
+    color: #fff;
+    font-weight: 300;
+}
+
+p {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 200;
+    letter-spacing: 0px;
+}
+
+button {
+    background-color: #AC0D1B;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 400;
+    padding: 10px 140px 10px 140px;
+    border: none;
+}
+
+.common-padding {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.common-spacing {
+    padding-left: 278px;
+    padding-right: 278px;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #AC0D1B;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.typing-demo {
+    width: 22ch;
+    animation: typing 2s steps(22), blink .5s step-end infinite alternate;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 1px solid;
+    font-family: monospace;
+    font-size: 1em;
+}
+
+@keyframes typing {
+    from {
+        width: 0
+    }
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent
+    }
+}
+
+.form-btn button {
+    background: transparent;
+    color: #AC0D1B;
+    border: 1px solid #AC0D1B;
+    font-size: 16px;
+    padding: 12px 42px 13px 42px;
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+.form-control,
+.datatable-input {
+    border-radius: inherit;
+}
+
+.table>thead,
+.datatable-table>thead {
+    background-color: #F6F6F6;
+    color: #AC0D1B;
+    font-weight: 400 !important;
+}
+
+.table tr:nth-child(even) {
+    background-color: #F6F6F6;
+}
+
+.top-nav .nav {
+    margin-top: inherit;
+}
+
+.tenent-table {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+}
+
+
+
+@media (max-width:1700px) {
+    .welcome-form {
+        padding: 30px 40px 35px 45px;
+        max-width: 43%;
+    }
+
+    .welcome-content p {
+        max-width: 66%;
+    }
+
+    .construction-map .nav {
+        max-width: 30%;
+    }
+}
+
+@media (max-width:1600px) {
+    .construction-map .nav {
+        max-width: 33%;
+    }
+}
+
+@media (max-width:1500px) {
+    .common-spacing {
+        padding-left: 200px;
+        padding-right: 200px;
+    }
+
+    .common-btn button {
+        padding: 8px 150px 8px 130px;
+    }
+
+    .main-box {
+        padding: 10px 35px 10px 55px;
+    }
+}
+
+@media (max-width:1400px) {
+    .admin-space {
+        padding-top: 100px;
+    }
+
+    h4 {
+        font-size: 24px;
+    }
+
+    .admin-details {
+        padding: 62px 0px 40px 0px;
+    }
+
+    .welcome-content {
+        padding-top: 22px;
+    }
+
+    h3 {
+        font-size: 40px;
+    }
+
+    .welcome-form {
+        max-width: 48%;
+    }
+
+    .welcome-form {
+        max-width: 48%;
+    }
+
+    label {
+        font-size: 14px !important
+    }
+
+    h5 {
+        font-size: 20px;
+    }
+
+    .tenent-table .table th {
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .tenent-table .table td {
+        font-weight: 300;
+        font-size: 12px;
+    }
+
+    .nav-tabs .nav-link {
+        font-size: 14px;
+    }
+}
+
+@media (max-width:1279px) {
+    .common-spacing {
+        padding-left: 70px;
+        padding-right: 70px;
+    }
+
+    p {
+        font-size: 12px;
+    }
+
+    h3 {
+        font-size: 32px;
+    }
+
+    .welcome-form {
+        max-width: 51%;
+    }
+
+    h5 {
+        font-size: 21px;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    .construction-map .nav {
+        max-width: 42%;
+    }
+
+    .form-control,
+    .datatable-input {
+        width: 90px;
+        font-size: 12px;
+    }
+
+    .propertydetails-wrapper .form-control,
+    .datatable-input {
+        width: 150px;
+        font-size: 12px;
+    }
+
+    .form-select,
+    .datatable-selector {
+        font-size: 12px;
+    }
+
+    label {
+        font-size: 12px !important;
+    }
+
+    .uploadFile {
+        width: 150px;
+        text-align: center;
+    }
+
+    .uploadFile span {
+        font-size: 12px;
+        padding-left: 5px;
+    }
+
+    .main-input {
+        display: block !important;
+    }
+
+    .tenant-table .table th {
+        font-weight: 500;
+        font-size: 14px;
+    }
+
+    .nav-tabs .nav-link {
+        margin-top: 1rem;
+    }
+
+}
+
+@media (max-width:1024px) {
+    h4 {
+        font-size: 20px;
+    }
+
+    .common-btn button {
+        font-size: 16px;
+    }
+
+    .typing-demo span {
+        font-size: 16px;
+    }
+
+}
+
+
+@media (max-width:992px) {
+    .admin-space {
+        padding-top: 50px;
+    }
+
+    .admin-details {
+        margin-bottom: 1rem;
+    }
+
+    h3 {
+        font-size: 28px;
+    }
+
+    .welcome-form {
+        max-width: 69%;
+    }
+
+    .welcome-content p {
+        max-width: 82%;
+    }
+
+    .construction-map {
+        margin-top: 2rem;
+    }
+
+    .construction-map .nav {
+        bottom: -12%;
+    }
+
+    .property-listimg {
+        margin-bottom: 1rem;
+    }
+
+    .construction-map .nav {
+        justify-content: center;
+        border: none;
+    }
+
+    .construction-map img {
+        margin-left: inherit;
+    }
+
+    .construction-map .nav {
+        position: inherit;
+        top: inherit;
+        bottom: inherit;
+    }
+
+    .tenent-table .table th {
+        font-size: 12px;
+    }
+
+    .label-black {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        color: #AC0D1B;
+    }
+
+    .tenant-main .label-black {
+        color: #AC0D1B !important;
+    }
+
+    .address-box {
+        width: 150px !important;
+    }
+
+    .main-property label {
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+    }
+
+    .common-padding {
+        padding-top: 1.25rem;
+        padding-bottom: 1.25rem;
+    }
+
+    .top {
+        margin-top: 1rem;
+    }
+
+    .top-row {
+        margin-top: 0rem !important;
+    }
+
+    .main-property {
+        margin-top: 2rem;
+    }
+
+    .tenant-table .table td {
+        font-size: 12px;
+    }
+
+    .report-row {
+        margin-top: 1rem !important;
+    }
+
+    .report-row label {
+        margin-bottom: 1rem;
+    }
+
+    .report-row .form-control,
+    .datatable-input {
+        width: 300px;
+    }
+
+    .welcome-form .form-control,
+    .datatable-input {
+        width: 100%;
+    }
+
+    .address-box {
+        width: 100% !important;
+    }
+
+    .propertydetails-wrapper {
+        margin-top: 2rem;
+    }
+
+    .uploadFile,
+    .download button {
+        margin-top: 10px;
+    }
+
+    .form-btn button {
+        font-size: 14px;
+        padding: 10px 25px;
+    }
+
+    .communication-box p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width:768px) {
+    .welcome-form {
+        max-width: 90%;
+    }
+
+    .construction-map .nav {
+        max-width: 89%;
+    }
+
+    .construction-map .nav {
+        bottom: -22%;
+    }
+
+    .otp-input {
+        width: 30px;
+        height: 30px;
+        border-radius: 5px;
+    }
+
+    .propertydetails-wrapper .form-control,
+    .datatable-input {
+        width: 100%;
+    }
+
+    .form-select,
+    .datatable-selector {
+        width: 100%;
+    }
+
+    .tenent-table .table th {
+        font-size: 12px;
+        max-width: 14em;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+}
+
+
+@media (max-width:577px) {
+    .common-spacing {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .otp-main {
+        position: inherit;
+        left: inherit;
+        transform: inherit;
+        margin-top: 4rem;
+    }
+
+    p {
+        font-size: 10px;
+    }
+
+    .welcome-content p {
+        padding-top: 1rem;
+    }
+
+    .welcome-logo {
+        text-align: center;
+    }
+
+    .common-padding {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    .welcome-content p {
+        max-width: 95%;
+    }
+
+    .welcome-form {
+        margin-top: 1rem !important;
+    }
+
+    .welcome-form {
+        padding: 10px 10px 10px 10px;
+    }
+
+    .welcome-form .form-control {
+        padding: inherit !important;
+    }
+
+    .common-btn button {
+        font-size: 7px;
+    }
+
+    .common-btn button {
+        padding: 8px 70px 8px 80px;
+    }
+
+    .common-btn {
+        margin-top: 1rem !important;
+    }
+
+    .welcome-form label {
+        font-size: 12px;
+    }
+
+    .otp-wrapper input {
+        margin-right: 0.2rem;
+    }
+
+    .otp-main {
+        top: 32%;
+    }
+
+    h5 {
+        font-size: 12px;
+    }
+
+    .otp-wrapper input {
+        width: 24px;
+        height: 24px;
+    }
+
+    .otp-wrapper {
+        margin-top: 1rem !important;
+    }
+
+    .otp-end a {
+        font-size: 12px;
+    }
+
+    .sb-topnav .navbar-brand {
+        width: inherit;
+        margin: 0;
+    }
+
+    .sb-topnav.navbar-dark #sidebarToggle {
+        margin-right: 1rem !important;
+    }
+
+    .tenant-main {
+        padding: 15px;
+    }
+
+    .communication-box p {
+        color: #000000;
+        font-weight: 300;
+        font-size: 13px;
+        text-align: left;
+    }
+
+    .tenant-table .table th {
+        font-weight: 500;
+        font-size: 12px;
+    }
+
+    .admin-space .col-lg-3 {
+        width: 50%;
+    }
+
+    .static-icon img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .admin-details {
+        height: 150px;
+        padding: 15px;
+    }
+
+    .hover-icon img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .admin-details h4 {
+        padding-top: 25px;
+    }
+}

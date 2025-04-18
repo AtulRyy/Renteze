@@ -1,0 +1,59 @@
+.sacredotp-wrapper {
+    background-color: #FBFBFB;
+    height: 100vh;
+    position: relative;
+}
+
+.otp-main {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.otp-main h5 {
+    max-width: 75%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.otp-wrapper input:focus {
+    outline: none;
+}
+
+.otp-input {
+    display: inline-block;
+    width: 64px;
+    height: 58px;
+    text-align: center;
+    background-color: #E9E9E9;
+    border: none;
+    border-radius: 14px;
+    margin-right: 0.25rem;
+    margin-left: 0.25rem;
+}
+
+.otp-wrapper input::placeholder {
+    color: #ffffff50
+}
+
+.otp-end {
+    text-align: center;
+}
+
+.otp-end p {
+    color: #AFAFAF;
+    font-weight: 300;
+    padding-top: 1rem;
+}
+
+.otp-end a {
+    font-size: 14px;
+    color: #7A040E;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.sacredotp-wrapper .common-btn button {
+    width: inherit;
+}

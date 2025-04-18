@@ -1,0 +1,47 @@
+.addproperty-box {
+    background-color: #F3F3F3;
+    border-radius: 13px;
+    opacity: 1;
+    padding: 30px;
+}
+
+.addproperty-box label {
+    color: #AC0D1B;
+}
+
+.form-select,
+.datatable-selector {
+    width: 200px;
+}
+
+.form-control,
+.datatable-input {
+    width: 150px;
+    border-radius: inherit;
+}
+
+.tenent-table td {
+    font-weight: 300;
+    font-size: 16px;
+}
+
+.tenant-table .table th {
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.add-profile i {
+    color: #AC0D1B;
+}
+
+.edit-icon {
+    color: #AC0D1B;
+}
+
+.hover-line {
+    color: #000 !important;
+}
+
+.hover-line:hover {
+    color: #AC0D1B !important;
+}

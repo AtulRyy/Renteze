@@ -1,0 +1,26 @@
+.propertymain-report p {
+    color: #000;
+    font-weight: 400;
+    padding-right: 2rem;
+    font-size: 14px;
+}
+
+.circle-1 {
+    width: 25px;
+    height: 25px;
+    background: #E97132 0% 0% no-repeat padding-box;
+    opacity: 1;
+    border-radius: 50%;
+    display: block;
+    margin-right: 10px;
+}
+
+.default {
+    float: right;
+}
+
+.default a {
+    color: #AC0D1B;
+    text-decoration: none;
+    font-size: 14px;
+}

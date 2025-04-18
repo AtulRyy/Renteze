@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Sacred Heart Brothers</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="css/layout.css" rel="stylesheet" />
+    <link href="css/sidebar.css" rel="stylesheet" />
+    <link href="css/tenant.css" rel="stylesheet" />
+    <link href="css/coomunication.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+
+</head>
+
+<body class="sb-nav-fixed">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark">
+        <!-- Navbar Brand-->
+        <a class="navbar-brand ps-3" href="index.html"><img style="max-width:50px;" src="images/logo.webp" alt=""></a>
+        <!-- Sidebar Toggle-->
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
+                class="fas fa-bars"></i></button>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <a class="navbar-brand ps-3" href="index.html"><img src="images/welcome-logo.webp" alt="logo"></a>
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <a class="nav-link" href="admin.html">
+                            <div class="sb-nav-link-icon"><img src="images/layout/admin.webp" alt=""></div>
+                            Admin
+                        </a>
+                        <a class="nav-link" href="property.html">
+                            <div class="sb-nav-link-icon"><img src="images/layout/property.webp" alt=""></div>
+                            Property List
+                        </a>
+                        <a class="nav-link active" href="tenent.html">
+                            <div class="sb-nav-link-icon"><img src="images/layout/tenant.webp" alt=""></div>
+                            Tenent
+                        </a>
+                        <a class="nav-link" href="propertyreports.html">
+                            <div class="sb-nav-link-icon"><img src="images/layout/report.webp" alt=""></div>
+                            Reports
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            <main class="common-padding">
+                <section class="propertydetails-wrapper">
+                    <div class="container">
+                        <div class="tenent-table">
+                            <h5>Communication</h5>
+                            <table class="table mt-5">
+
+                                <thead class="pt-5">
+                                    <tr>
+                                        <th scope="col">S.No</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Subject</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1.</td>
+                                        <td>25/1/2024</td>
+                                        <td><a type="button" data-bs-toggle="modal" data-bs-target="#modal1"
+                                                href="">Water Seepage in the
+                                                Building</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2.</td>
+                                        <td>25/1/2024</td>
+                                        <td><a type="button" data-bs-toggle="modal" data-bs-target="#modal2"
+                                                href="#">Power outage in the Building</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3.</td>
+                                        <td>25/1/2024</td>
+                                        <td><a type="button" data-bs-toggle="modal" data-bs-target="#modal3"
+                                                href="#">Power outage in the Building</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="form-btn mt-3 d-flex justify-content-end">
+                            <a href="propertyentire.html"><button>Replay</button></a>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+</body>
+<div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="modal1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="communication-box">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                        sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+                        est laborum.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modal2" tabindex="-1" aria-labelledby="modal2" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="communication-box">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                        sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+                        est laborum.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modal3" tabindex="-1" aria-labelledby="modal3" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="communication-box">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                        sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+                        est laborum.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    crossorigin="anonymous"></script>
+<script src="js/scripts.js"></script>
+<script>
+    $("#btnImportData").on("click", function (e) {
+        var fileDialog = $('<input type="file">');
+        fileDialog.click();
+        fileDialog.on("change", onFileSelected);
+        return false;
+    });
+
+    var onFileSelected = function (e) {
+        console.log($(this)[0].files);
+    };
+</script>
+
+</html>
