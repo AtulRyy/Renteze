@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Issues - RentEze</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+      <a class="navbar-brand" href="#">RentEze</a>
+      <span class="navbar-text text-white ms-auto">My Issues</span>
+    </div>
+  </nav>
+
+  <div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h3>Your Raised Issues</h3>
+      <a href="/tenant/dashboard" class="btn btn-outline-secondary">Back to Dashboard</a>
+    </div>
+
+    <% if (issues.length === 0) { %>
+      <div class="alert alert-info">You haven't raised any issues yet.</div>
+    <% } else { %>
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead class="table-primary">
+            <tr>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Priority</th>
+              <th>Status</th>
+              <th>Raised On</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% issues.forEach(issue => { %>
+              <tr>
+                <td><%= issue.title %></td>
+                <td><%= issue.description %></td>
+                <td class="text-capitalize"><%= issue.priority %></td>
+                <td><span class="badge bg-<%= issue.status === 'resolved' ? 'success' : 'warning' %>"><%= issue.status %></span></td>
+                <td><%= issue.createdAt.toLocaleDateString() %></td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    <% } %>
+  </div>
+
+  <!-- Bootstrap Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

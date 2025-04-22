@@ -59,6 +59,28 @@
     <% } %>
 
   </div>
-
+<!-- Invite Tenant Section -->
+<% if (unit.isOccupied && unit.tenant) { %>
+<div class="container mt-5 pt-4 border-top">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h4 class="card-title mb-3">Invite Tenant</h4>
+          <form action="/invite-tenant/<%= unit._id %>" method="POST">
+            <div class="mb-3">
+              <label for="tenantEmail" class="form-label">Tenant Email</label>
+              <input type="email" class="form-control" name="tenantEmail" id="tenantEmail" placeholder="name@example.com" required value="<%=unit.tenant.email%>">
+            </div>
+            <div class="d-grid">
+              <button type="submit" class="btn btn-success">Send Credentials</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% }%>
 </body>
 </html>

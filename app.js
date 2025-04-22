@@ -28,6 +28,8 @@ const createUnitRoute=require('./routes/createUnit')
 const viewPropertyRoute=require('./routes/viewProperty')
 const viewUnitRoute=require('./routes/viewUnit')
 const addTenantRoute=require('./routes/addTenantRoute')
+const inviteTenantRoute=require('./routes/inviteTenantRoute')
+const tenantRoute=require('./routes/tenantRoute')
 
 
 app.use('/dashboard',dashboardRoute)
@@ -37,6 +39,8 @@ app.use('/create-room',createUnitRoute)
 app.use('/property',viewPropertyRoute)
 app.use('/unit',viewUnitRoute)
 app.use('/add-tenant',addTenantRoute)
+app.use('/invite-tenant',inviteTenantRoute)
+app.use('/tenant',tenantRoute)
 
 
 app.get('/', (req, res) => {
