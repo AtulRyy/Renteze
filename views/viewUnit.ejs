@@ -52,6 +52,33 @@
           </ul>
         </div>
       </div>
+      <div class="card shadow-sm mb-4">
+        <div class="card-body">
+          <h4 class="card-title">Record Rent Payment</h4>
+          <form action="/rent-payments/<%= unit.tenant._id %>" method="POST">
+            <div class="mb-3">
+              <label for="amountPaid" class="form-label">Amount Paid (₹)</label>
+              <input type="number" class="form-control" id="amountPaid" name="amountPaid" required>
+            </div>
+            <div class="mb-3">
+              <label for="paymentDate" class="form-label">Payment Date</label>
+              <input type="date" class="form-control" id="paymentDate" name="paymentDate" required>
+            </div>
+            <div class="mb-3">
+              <label for="remarks" class="form-label">Remarks (optional)</label>
+              <textarea class="form-control" id="remarks" name="remarks" rows="2"></textarea>
+            </div>
+            <button type="submit" class="btn btn-success">Submit Payment</button>
+          </form>
+      
+          <div class="mt-3 text-end">
+            <a href="/rent-payments/<%= unit.tenant._id %>" class="btn btn-outline-primary">
+              View Past Payments
+            </a>
+          </div>
+        </div>
+      </div>
+      
     <% } else { %>
       <div class="text-center">
         <a href="/add-tenant/<%= unit._id %>" class="btn btn-primary mt-4">Add Tenant</a>

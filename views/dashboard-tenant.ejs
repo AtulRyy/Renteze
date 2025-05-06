@@ -1,120 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Tenant Dashboard - RentEze</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Bootstrap 5 CDN -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body class="bg-light">
-
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container">
-      <a class="navbar-brand" href="#">RentEze</a>
-      <span class="navbar-text text-white ms-auto">Tenant Dashboard</span>
-      
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tenant Dashboard - RentEze</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Bootstrap 5 CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="container">
+        <a class="navbar-brand" href="#">RentEze</a>
+        <span class="navbar-text text-white ms-auto">Tenant Dashboard</span>
+      </div>
+    </nav>
+    <% if (tenant.rentStatus === 'due' || tenant.rentStatus === 'overdue') { %>
+      <div class="alert alert-warning d-flex align-items-center" role="alert">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="bi flex-shrink-0 me-2"
+          width="24"
+          height="24"
+          fill="currentColor"
+          viewBox="0 0 16 16"
+          role="img"
+          aria-label="Warning:"
+        >
+          <path
+            d="M8.982 1.566a1.13 1.13 0 0 0-1.964 0L.165 13.233c-.457.778.091 1.767.982 1.767h13.707c.89 0 1.438-.99.982-1.767L8.982 1.566zm-.982.934L14.856 14H1.144L8 2.5zm.002 6.5a.905.905 0 1 1-1.81 0 .905.905 0 0 1 1.81 0zm-.905 2.905a.905.905 0 1 1 0 1.81.905.905 0 0 1 0-1.81z"
+          />
+        </svg>
+        <div>
+          <strong>Rent Due!</strong> Please pay now
+           to prevent fines.
+        </div>
+      </div>
+    <% } %>
+    <div class="d-flex justify-content-center my-4">
+      <a href="/rent-payments/<%= tenant._id %>" class="btn btn-primary">
+        View All Previous Payments
+      </a>
     </div>
-  </nav>
+    
 
-  <div class="container mt-5">
+    <div class="container mt-5">
+      <!-- SECTION 1: Tenant Details -->
+      <div class="card shadow-sm mb-4">
+        <div class="card-header bg-white border-bottom">
+          <h5 class="mb-0">Your Details</h5>
+        </div>
+        <div class="card-body">
+          <dl class="row">
+            <dt class="col-sm-4">Name</dt>
+            <dd class="col-sm-8"><%= tenant.name %></dd>
 
-    <!-- SECTION 1: Tenant Details -->
-    <div class="card shadow-sm mb-4">
-      <div class="card-header bg-white border-bottom">
-        <h5 class="mb-0">Your Details</h5>
+            <dt class="col-sm-4">Email</dt>
+            <dd class="col-sm-8"><%= tenant.email %></dd>
+
+            <dt class="col-sm-4">Phone</dt>
+            <dd class="col-sm-8"><%= tenant.phone %></dd>
+
+            <dt class="col-sm-4">Name of Business</dt>
+            <dd class="col-sm-8"><%= tenant.nameOfBusiness %></dd>
+
+            <dt class="col-sm-4">Nature of Business</dt>
+            <dd class="col-sm-8"><%= tenant.natureOfBusiness %></dd>
+
+            <dt class="col-sm-4">Rent</dt>
+            <dd class="col-sm-8">₹<%= tenant.rent %></dd>
+
+            <dt class="col-sm-4">Advance</dt>
+            <dd class="col-sm-8">₹<%= tenant.advance %></dd>
+
+            <dt class="col-sm-4">Agreement Start Date</dt>
+            <dd class="col-sm-8">
+              <%= tenant.agreementStartDate.toDateString() %>
+            </dd>
+
+            <dt class="col-sm-4">Agreement End Date</dt>
+            <dd class="col-sm-8">
+              <%= tenant.agreementEndDate.toDateString() %>
+            </dd>
+
+            <dt class="col-sm-4">Annual Increment (%)</dt>
+            <dd class="col-sm-8"><%= tenant.annualIncrement %>%</dd>
+
+            <dt class="col-sm-4">Proof of Address</dt>
+            <dd class="col-sm-8">
+              <a href="<%= tenant.uploads.proofOfAddress %>" target="_blank"
+                >View</a
+              >
+            </dd>
+
+            <dt class="col-sm-4">Proof of Business</dt>
+            <dd class="col-sm-8">
+              <a href="<%= tenant.uploads.proofOfBusiness %>" target="_blank"
+                >View</a
+              >
+            </dd>
+
+            <dt class="col-sm-4">Proof of Identity</dt>
+            <dd class="col-sm-8">
+              <a href="<%= tenant.uploads.proofOfIdentity %>" target="_blank"
+                >View</a
+              >
+            </dd>
+
+            <dt class="col-sm-4">Agreement Draft</dt>
+            <dd class="col-sm-8">
+              <a href="<%= tenant.uploads.agreementDraft %>" target="_blank"
+                >View</a
+              >
+            </dd>
+
+            <dt class="col-sm-4">Agreement Copy</dt>
+            <dd class="col-sm-8">
+              <a href="<%= tenant.uploads.agreementCopy %>" target="_blank"
+                >View</a
+              >
+            </dd>
+          </dl>
+        </div>
       </div>
-      <div class="card-body">
-        <dl class="row">
-          <dt class="col-sm-4">Name</dt>
-          <dd class="col-sm-8"><%= tenant.name %></dd>
 
-          <dt class="col-sm-4">Email</dt>
-          <dd class="col-sm-8"><%= tenant.email %></dd>
+      <!-- SECTION 2: Raise an Issue -->
+      <div class="card shadow-sm">
+        <div
+          class="card-header bg-white border-bottom d-flex justify-content-between align-items-center"
+        >
+          <h5 class="mb-0">Raise a Maintenance Issue</h5>
+          <a href="/tenant/issues" class="btn btn-outline-primary btn-sm"
+            >View My Issues</a
+          >
+        </div>
 
-          <dt class="col-sm-4">Phone</dt>
-          <dd class="col-sm-8"><%= tenant.phone %></dd>
+        <div class="card-body">
+          <form action="/tenant/raise-issue" method="POST">
+            <div class="mb-3">
+              <label for="issueTitle" class="form-label">Issue Title</label>
+              <input
+                type="text"
+                class="form-control"
+                id="issueTitle"
+                name="title"
+                placeholder="E.g., Leaking pipe"
+                required
+              />
+            </div>
 
-          <dt class="col-sm-4">Name of Business</dt>
-          <dd class="col-sm-8"><%= tenant.nameOfBusiness %></dd>
+            <div class="mb-3">
+              <label for="priority" class="form-label">Priority</label>
+              <select
+                class="form-select"
+                id="priority"
+                name="priority"
+                required
+              >
+                <option value="" disabled selected>Select priority</option>
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+              </select>
+            </div>
 
-          <dt class="col-sm-4">Nature of Business</dt>
-          <dd class="col-sm-8"><%= tenant.natureOfBusiness %></dd>
+            <div class="mb-3">
+              <label for="description" class="form-label"
+                >Issue Description</label
+              >
+              <textarea
+                class="form-control"
+                id="description"
+                name="description"
+                rows="4"
+                placeholder="Describe the issue in detail..."
+                required
+              ></textarea>
+            </div>
 
-          <dt class="col-sm-4">Rent</dt>
-          <dd class="col-sm-8">₹<%= tenant.rent %></dd>
-
-          <dt class="col-sm-4">Advance</dt>
-          <dd class="col-sm-8">₹<%= tenant.advance %></dd>
-
-          <dt class="col-sm-4">Agreement Start Date</dt>
-          <dd class="col-sm-8"><%= tenant.agreementStartDate.toDateString() %></dd>
-
-          <dt class="col-sm-4">Agreement End Date</dt>
-          <dd class="col-sm-8"><%= tenant.agreementEndDate.toDateString() %></dd>
-
-          <dt class="col-sm-4">Annual Increment (%)</dt>
-          <dd class="col-sm-8"><%= tenant.annualIncrement %>%</dd>
-
-          <dt class="col-sm-4">Proof of Address</dt>
-          <dd class="col-sm-8"><a href="<%= tenant.uploads.proofOfAddress %>" target="_blank">View</a></dd>
-
-          <dt class="col-sm-4">Proof of Business</dt>
-          <dd class="col-sm-8"><a href="<%= tenant.uploads.proofOfBusiness %>" target="_blank">View</a></dd>
-
-          <dt class="col-sm-4">Proof of Identity</dt>
-          <dd class="col-sm-8"><a href="<%= tenant.uploads.proofOfIdentity %>" target="_blank">View</a></dd>
-
-          <dt class="col-sm-4">Agreement Draft</dt>
-          <dd class="col-sm-8"><a href="<%= tenant.uploads.agreementDraft %>" target="_blank">View</a></dd>
-
-          <dt class="col-sm-4">Agreement Copy</dt>
-          <dd class="col-sm-8"><a href="<%= tenant.uploads.agreementCopy %>" target="_blank">View</a></dd>
-        </dl>
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary">
+                Submit Issue
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
 
-    <!-- SECTION 2: Raise an Issue -->
-    <div class="card shadow-sm">
-      <div class="card-header bg-white border-bottom d-flex justify-content-between align-items-center">
-        <h5 class="mb-0">Raise a Maintenance Issue</h5>
-        <a href="/tenant/issues" class="btn btn-outline-primary btn-sm">View My Issues</a>
-      </div>
-      
-      <div class="card-body">
-        <form action="/tenant/raise-issue" method="POST">
-
-          <div class="mb-3">
-            <label for="issueTitle" class="form-label">Issue Title</label>
-            <input type="text" class="form-control" id="issueTitle" name="title" placeholder="E.g., Leaking pipe" required>
-          </div>
-
-          <div class="mb-3">
-            <label for="priority" class="form-label">Priority</label>
-            <select class="form-select" id="priority" name="priority" required>
-              <option value="" disabled selected>Select priority</option>
-              <option value="low">Low</option>
-              <option value="medium">Medium</option>
-              <option value="high">High</option>
-            </select>
-          </div>
-
-          <div class="mb-3">
-            <label for="description" class="form-label">Issue Description</label>
-            <textarea class="form-control" id="description" name="description" rows="4" placeholder="Describe the issue in detail..." required></textarea>
-          </div>
-
-          <div class="d-grid">
-            <button type="submit" class="btn btn-primary">Submit Issue</button>
-          </div>
-
-        </form>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>
