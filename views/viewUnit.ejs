@@ -23,6 +23,9 @@
           <li class="list-group-item"><strong>Water Connection:</strong> <%= unit.hasWaterConnection ? 'Yes' : 'No' %></li>
           <li class="list-group-item"><strong>Independent Toilet:</strong> <%= unit.hasIndependentToilet ? 'Yes' : 'No' %></li>
         </ul>
+        <div class="mt-4 text-end">
+          <a href="/edit-unit/<%= unit._id %>" class="btn btn-warning">✏️ Edit Unit</a>
+        </div>        
       </div>
     </div>
 

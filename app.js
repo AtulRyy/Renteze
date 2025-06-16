@@ -50,6 +50,9 @@ app.use('/invite-tenant',inviteTenantRoute)
 app.use('/tenant',tenantRoute)
 app.use('/rent-payments', rentPaymentsRoutes);
 app.use('/', inviteAdminRoutes);
+app.use('/edit-property', require('./routes/editProperty'));
+app.use('/edit-unit', require('./routes/editUnit'));
+
 
 app.get('/', (req, res) => {
     res.send(
