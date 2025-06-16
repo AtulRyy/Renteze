@@ -33,6 +33,9 @@ const addTenantRoute=require('./routes/addTenantRoute')
 const inviteTenantRoute=require('./routes/inviteTenantRoute')
 const tenantRoute=require('./routes/tenantRoute')
 const rentPaymentsRoutes = require('./routes/rentPayments');
+const inviteAdminRoutes = require('./routes/inviteAdminRoute');
+
+
 
 
 
@@ -46,6 +49,7 @@ app.use('/add-tenant',addTenantRoute)
 app.use('/invite-tenant',inviteTenantRoute)
 app.use('/tenant',tenantRoute)
 app.use('/rent-payments', rentPaymentsRoutes);
+app.use('/', inviteAdminRoutes);
 
 app.get('/', (req, res) => {
     res.send(
