@@ -53,6 +53,12 @@
             <li class="list-group-item"><a href="/<%= unit.tenant.uploads.agreementDraft %>" target="_blank">Agreement Draft</a></li>
             <li class="list-group-item"><a href="/<%= unit.tenant.uploads.agreementCopy %>" target="_blank">Agreement Copy</a></li>
           </ul>
+          <!-- 🔧 EDIT TENANT BUTTON -->
+          <div class="text-end mt-3">
+            <a href="/edit-tenant/<%= unit.tenant._id %>" class="btn btn-warning">
+              ✏️ Edit Tenant
+            </a>
+          </div>
         </div>
       </div>
       <div class="card shadow-sm mb-4">

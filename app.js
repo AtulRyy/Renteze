@@ -52,7 +52,7 @@ app.use('/rent-payments', rentPaymentsRoutes);
 app.use('/', inviteAdminRoutes);
 app.use('/edit-property', require('./routes/editProperty'));
 app.use('/edit-unit', require('./routes/editUnit'));
-
+app.use('/edit-tenant', require('./routes/editTenant'));
 
 app.get('/', (req, res) => {
     res.send(
