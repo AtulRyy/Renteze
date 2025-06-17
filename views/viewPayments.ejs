@@ -24,6 +24,7 @@
                   <th>#</th>
                   <th>Amount Paid (₹)</th>
                   <th>Payment Date</th>
+                  <th>Mode</th>
                   <th>Remarks</th>
                   <th>Invoice</th>
                 </tr>
@@ -34,6 +35,7 @@
                     <td><%= index + 1 %></td>
                     <td>₹<%= payment.amountPaid %></td>
                     <td><%= new Date(payment.paymentDate).toLocaleDateString() %></td>
+                    <td><%= payment.modeOfTransfer.charAt(0).toUpperCase() + payment.modeOfTransfer.slice(1) %></td>
                     <td><%= payment.remarks || '-' %></td>
                     <td>
                       <% if (payment.invoiceFile) { %>
@@ -47,7 +49,7 @@
                   </tr>
                 <% }); %>
               </tbody>
-            </table>
+            </table>            
           </div>
         <% } else { %>
           <p class="text-muted mt-3">No payments recorded yet.</p>
