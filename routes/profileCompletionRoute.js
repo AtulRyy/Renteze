@@ -9,29 +9,40 @@ router.get('/', requiresAuth(), (req, res) => {
     res.render('complete-profile', { email: req.oidc.user.email })
 })
 router.post('/', async (req, res) => {
-    const { name, email, phoneno } = req.body;
-    
-    
-    try {
-        const updatedOwner = await Owner.findOneAndUpdate(
-            { email: req.oidc.user.email },                          // Find by email
-            {
-                name: name,
-                phoneno: phoneno,
-                profileCompletion: true                  // Example: mark profile as complete
-            },
-            { new: true }                               // Return updated doc
-        );
+  const { name, email, phoneno } = req.body;
+  const userEmail = req.oidc?.user?.email || req.query?.testEmail;
 
-        if (!updatedOwner) {
-            return res.status(404).send("❌ Owner not found with that email");
-        }
+  try {
+    const updatedOwner = await Owner.findOneAndUpdate(
+      { email: userEmail }, // Find by email
+      {
+        name,
+        phoneno,
+        profileCompletion: true
+      },
+      { new: true } // Return the updated document
+    );
 
-        res.redirect('/dashboard')
-    } catch (err) {
-        console.error(err);
-        res.status(500).send('❌ Error updating owner');
+    if (!updatedOwner) {
+      return res.status(404).json({
+        success: false,
+        message: 'Owner not found with that email'
+      });
     }
 
-})
+    res.status(200).json({
+      success: true,
+      message: 'Owner updated successfully',
+      data: updatedOwner
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      success: false,
+      message: 'Error updating owner',
+      error: err.message
+    });
+  }
+});
+
 module.exports = router

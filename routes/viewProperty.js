@@ -6,22 +6,43 @@ const router=express.Router()
 const Unit = require('../models/unit'); 
 
 
-router.get('/:id',requiresAuth(),async(req,res)=>{
-    const propertyId = req.params.id;
-    try {
-        const user=await owner.findOne({email:req.oidc.user.email})
-        const currentProperty = await property.findById(propertyId).populate('ownerId').populate('units'); // Find property by ID
-        if (!property) {
-            return res.status(404).send('Property not found');
-        }
-        res.render('viewProperty', {
-            property: currentProperty,
-            units: currentProperty.units, // Optional: send units separately
-            name: user.name
-        });
-    } catch (error) {
-        res.status(500).send('Error retrieving property '+error);
+router.get('/:id', /* requiresAuth(), */ async (req, res) => {
+  const propertyId = req.params.id;
+  
+  try {
+    const userEmail = req.oidc?.user?.email || req.params.testEmail;
+
+    const user = await owner.findOne({ email: userEmail });
+
+    const currentProperty = await property.findById(propertyId)
+      .populate('ownerId')
+      .populate('units'); // populate units if any
+
+    if (!currentProperty) {
+      return res.status(404).json({
+        success: false,
+        message: 'Property not found'
+      });
     }
-})
+
+    res.json({
+      success: true,
+      data: {
+        property: currentProperty,
+        units: currentProperty.units,
+        ownerName: user?.name || 'Unknown Owner'
+      }
+    });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: 'Error retrieving property',
+      error: error.message
+    });
+  }
+});
+
 
 module.exports=router

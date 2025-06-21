@@ -55,11 +55,11 @@ router.post('/:id', cpUpload, async (req, res) => {
       agreementEndDate,
       annualIncrement,
       uploads: {
-        proofOfAddress: req.files['proofOfAddress'][0].path,
-        proofOfBusiness: req.files['proofOfBusiness'][0].path,
-        proofOfIdentity: req.files['proofOfIdentity'][0].path,
-        agreementDraft: req.files['agreementDraft'][0].path,
-        agreementCopy: req.files['agreementCopy'][0].path
+        proofOfAddress: req.files['proofOfAddress'][0]?.path,
+        proofOfBusiness: req.files['proofOfBusiness'][0]?.path,
+        proofOfIdentity: req.files['proofOfIdentity'][0]?.path,
+        agreementDraft: req.files['agreementDraft'][0]?.path,
+        agreementCopy: req.files['agreementCopy'][0]?.path
       }
     });
 
@@ -71,8 +71,8 @@ router.post('/:id', cpUpload, async (req, res) => {
       isOccupied: true,
       tenant: tenant._id
     });
-
-    res.redirect(`/unit/${unitId}`); // or redirect to a success page
+return res.send("Success")
+    // res.redirect(`/unit/${unitId}`); // or redirect to a success page
   } catch (err) {
     console.error(err);
     res.render('addTenant', { error: 'Something went wrong. Please check your inputs.', unitId });

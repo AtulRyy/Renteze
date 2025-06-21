@@ -41,8 +41,8 @@ router.get('/:id', requiresAuth(), async (req, res) => {
 });
 
 // POST route to create unit
-router.post('/:id', requiresAuth(), async (req, res) => {
-  const propertyId = req.params.id;  // Extract propertyId from the URL param
+router.post('/:id', /* requiresAuth(), */ async (req, res) => {
+  const propertyId = req.params.id;
 
   const {
     roomId,
@@ -71,19 +71,31 @@ router.post('/:id', requiresAuth(), async (req, res) => {
     await newUnit.save();
 
     const property = await Property.findById(propertyId);
+    if (!property) {
+      return res.status(404).json({
+        success: false,
+        message: 'Property not found'
+      });
+    }
+
     property.units.push(newUnit._id);
     await property.save();
 
-    res.redirect(`/property/${propertyId}`);
+    res.status(201).json({
+      success: true,
+      message: 'Unit created successfully',
+      data: newUnit
+    });
   } catch (error) {
     console.error(error);
-    res.render('createUnit', {
-      name: req.oidc.user.name,
-      error: 'Failed to create unit.',
-      formData: req.body,
-      propertyId,
+    res.status(500).json({
+      success: false,
+      message: 'Failed to create unit',
+      error: error.message,
+      formData: req.body
     });
   }
 });
+
 
 module.exports = router;
