@@ -55,7 +55,6 @@ router.get('/', /* requiresAuth(), */ async (req, res) => {
   }
 });
 
-// 🗑️ DELETE route to remove property and its units
 router.delete('/:propertyId', async (req, res) => {
   try {
     const { propertyId } = req.params;
