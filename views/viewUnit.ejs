@@ -23,6 +23,9 @@
           <li class="list-group-item"><strong>Water Connection:</strong> <%= unit.hasWaterConnection ? 'Yes' : 'No' %></li>
           <li class="list-group-item"><strong>Independent Toilet:</strong> <%= unit.hasIndependentToilet ? 'Yes' : 'No' %></li>
         </ul>
+        <div class="mt-4 text-end">
+          <a href="/edit-unit/<%= unit._id %>" class="btn btn-warning">✏️ Edit Unit</a>
+        </div>        
       </div>
     </div>
 
@@ -50,6 +53,12 @@
             <li class="list-group-item"><a href="/<%= unit.tenant.uploads.agreementDraft %>" target="_blank">Agreement Draft</a></li>
             <li class="list-group-item"><a href="/<%= unit.tenant.uploads.agreementCopy %>" target="_blank">Agreement Copy</a></li>
           </ul>
+          <!-- 🔧 EDIT TENANT BUTTON -->
+          <div class="text-end mt-3">
+            <a href="/edit-tenant/<%= unit.tenant._id %>" class="btn btn-warning">
+              ✏️ Edit Tenant
+            </a>
+          </div>
         </div>
       </div>
       <div class="card shadow-sm mb-4">
@@ -58,18 +67,31 @@
           <form action="/rent-payments/<%= unit.tenant._id %>" method="POST">
             <div class="mb-3">
               <label for="amountPaid" class="form-label">Amount Paid (₹)</label>
-              <input type="number" class="form-control" id="amountPaid" name="amountPaid" required>
+              <input type="number" class="form-control" id="amountPaid" name="amountPaid" min="0" required>
             </div>
+          
             <div class="mb-3">
               <label for="paymentDate" class="form-label">Payment Date</label>
               <input type="date" class="form-control" id="paymentDate" name="paymentDate" required>
             </div>
+          
+            <div class="mb-3">
+              <label for="modeOfTransfer" class="form-label">Mode of Transfer</label>
+              <select class="form-select" id="modeOfTransfer" name="modeOfTransfer" required>
+                <option value="">-- Select Payment Mode --</option>
+                <option value="cash">Cash</option>
+                <option value="cheque">Cheque</option>
+                <option value="upi">UPI</option>
+              </select>
+            </div>
+          
             <div class="mb-3">
               <label for="remarks" class="form-label">Remarks (optional)</label>
               <textarea class="form-control" id="remarks" name="remarks" rows="2"></textarea>
             </div>
+          
             <button type="submit" class="btn btn-success">Submit Payment</button>
-          </form>
+          </form>          
       
           <div class="mt-3 text-end">
             <a href="/rent-payments/<%= unit.tenant._id %>" class="btn btn-outline-primary">

@@ -89,6 +89,8 @@
       <p><strong>Address:</strong> <%= property.address %></p>
       <p><strong>Location:</strong> <%= property.location %></p>
 
+      <a href="/edit-property/<%= property._id %>" class="add-btn" style="background-color: #28a745; margin-left: 1rem;">✏️ Edit Property</a>
+
       <h3>Units:</h3>
       <ul>
         <% if (property.units.length > 0) { %>

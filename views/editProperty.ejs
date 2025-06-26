@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Edit Property</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    h2 {
+      color: #007bff;
+      margin-bottom: 1.5rem;
+    }
+
+    form label {
+      display: block;
+      margin: 1rem 0 0.5rem;
+    }
+
+    form input {
+      width: 100%;
+      padding: 0.6rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .btn {
+      margin-top: 1.5rem;
+      padding: 0.6rem 1.2rem;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #0056b3;
+    }
+
+    .error {
+      color: red;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Edit Property</h2>
+    <form method="POST" action="/edit-property/<%= property._id %>">
+      <label for="propertyName">Property Name</label>
+      <input type="text" id="propertyName" name="propertyName" value="<%= property.name %>" required />
+
+      <label for="propertyAddress">Address</label>
+      <input type="text" id="propertyAddress" name="propertyAddress" value="<%= property.address %>" required />
+
+      <label for="propertyLocation">Location</label>
+      <input type="text" id="propertyLocation" name="propertyLocation" value="<%= property.location %>" required />
+
+      <button type="submit" class="btn">Update Property</button>
+    </form>
+
+    <% if (error) { %>
+      <p class="error"><%= error %></p>
+    <% } %>
+  </div>
+</body>
+</html>

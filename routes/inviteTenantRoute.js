@@ -10,7 +10,7 @@ const bcrypt = require('bcrypt');
 const user = require('../models/user');
 
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key'; // use env in prod
+const JWT_TOKEN = process.env.JWT_TOKEN || 'your-secret-key'; // use env in prod
 
 // Email transport setup (Gmail example)
 const transporter = nodemailer.createTransport({
@@ -22,18 +22,21 @@ const transporter = nodemailer.createTransport({
 });
 
 
-router.get('/set-password/:token', async (req, res) => {
+router.get('/invite-tenant/set-password/:token', async (req, res) => {
     const { token } = req.params;
 
     try {
-        const decoded = jwt.verify(token, JWT_SECRET);
-        const currentTenant = await Tenant.findById(decoded.id);
+        const decoded = jwt.verify(token, process.env.JWT_TOKEN);
+        const tenant = await Tenant.findById(decoded.id);
 
-        if (!currentTenant) return res.send('Invalid or expired link.');
+        if (!tenant) return res.send('Invalid or expired link.');
 
-        res.render('setPassword', { tenantId: currentTenant._id }); // You'll create this EJS
+        res.render('setPassword', {
+            userId: tenant._id,
+            role: 'tenant' 
+        });
     } catch (err) {
-        res.send('Invalid or expired token');
+        res.send('Invalid or expired token.');
     }
 });
 
@@ -98,7 +101,7 @@ router.post('/:unitId', async (req, res) => {
             return res.send('Tenant not found for this unit');
         }
 
-        const token = jwt.sign({ id: currentTenant._id }, JWT_SECRET, { expiresIn: '1d' });
+        const token = jwt.sign({ id: currentTenant._id }, JWT_TOKEN, { expiresIn: '1d' });
 
         const link = `${process.env.baseURL}/invite-tenant/set-password/${token}`;
 
