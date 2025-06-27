@@ -42,8 +42,14 @@ const UnitSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
+  occupancyStatus: {                 
+    type: String,
+    enum: ['Vacant', 'Occupied'],
+    default: 'Vacant'
+  },
   tenant: {
-    type: mongoose.Schema.Types.ObjectId, ref: 'Tenant'
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Tenant'
   }
 });
 
