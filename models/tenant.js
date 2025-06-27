@@ -70,7 +70,7 @@ const tenantSchema = new mongoose.Schema({
     },
     rentStatus: {
         type: String,
-        enum: ['due', 'overdue', 'paid'],
+        enum: ['due', 'overdue', 'paid','partial'],
         default: 'due'
     }
 }, {
