@@ -7,7 +7,7 @@ const Owner = require('../models/owner');
 const Property = require('../models/property');
 
 // GET /unit/:id → Show unit details
-router.get('/:id', /*requiresAuth(),*/  async (req, res) => {
+router.get('/:id', requiresAuth(), async (req, res) => {
   try {
     const unit = await Unit.findById(req.params.id)
       .populate('propertyId')
@@ -41,10 +41,11 @@ router.get('/:id', /*requiresAuth(),*/  async (req, res) => {
     res.status(500).json({
       success: false,
       message: 'Server error loading unit details',
-      error: error.message
+      error
     });
   }
 });
 
 
 module.exports = router;
+  

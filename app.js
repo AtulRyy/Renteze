@@ -23,7 +23,7 @@ app.use(cors({
       callback(new Error('Not allowed by CORS'));
     }
   },
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }));
@@ -43,31 +43,23 @@ app.use('/invoices', express.static('invoices'));
 const dashboardRoute = require('./routes/dashboardRoute');
 const profileCompletionRoute = require('./routes/profileCompletionRoute');
 const createPropertyRoute = require('./routes/createPropertyRoute');
-const createUnitRoute = require('./routes/createUnit');
 const viewPropertyRoute = require('./routes/viewProperty');
-const viewUnitRoute = require('./routes/viewUnit');
+const unitRoute = require('./routes/unit'); // ✅ consolidated route
 const addTenantRoute = require('./routes/addTenantRoute');
 const inviteTenantRoute = require('./routes/inviteTenantRoute');
 const tenantRoute = require('./routes/tenantRoute');
 const rentPaymentsRoutes = require('./routes/rentPayments');
-const inviteAdminRoutes = require('./routes/inviteAdminRoute');
-
-
 
 app.use('/dashboard', dashboardRoute);
 app.use('/complete-profile', profileCompletionRoute);
 app.use('/create-property', createPropertyRoute);
-app.use('/create-room', createUnitRoute);
+// ✅ Removed outdated createUnit and viewUnit mounts
 app.use('/property', viewPropertyRoute);
-app.use('/unit', viewUnitRoute);
+app.use('/unit', unitRoute); // ✅ single unified route for all unit operations
 app.use('/add-tenant', addTenantRoute);
 app.use('/invite-tenant', inviteTenantRoute);
 app.use('/tenant', tenantRoute);
 app.use('/rent-payments', rentPaymentsRoutes);
-app.use('/', inviteAdminRoutes);
-app.use('/edit-property', require('./routes/editProperty'));
-app.use('/edit-unit', require('./routes/editUnit'));
-app.use('/edit-tenant', require('./routes/editTenant'));
 
 // Root Route
 app.get('/', (req, res) => {

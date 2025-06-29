@@ -8,7 +8,7 @@ const router = express.Router();
 
 // GET route to show form
 router.get('/:id', requiresAuth(), async (req, res) => {
-  const propertyId = req.params.id;  // Extract propertyId from the URL param
+  const propertyId = req.params.id; 
   try {
     const user = await Owner.findOne({ email: req.oidc.user.email });
     const property = await Property.findById(propertyId);
