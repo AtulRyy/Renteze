@@ -3,12 +3,13 @@ const router = express.Router();
 const multer = require('multer');
 const csv = require('csvtojson');
 const Tenant = require('../models/tenant'); // adjust path as needed
+const owner = require('../models/owner');
 
 // Multer config
 const upload = multer({ storage: multer.memoryStorage() });
 
 // CSV Upload Route
-router.post('/upload-tenants', upload.single('file'), async (req, res) => {
+router.post('/', upload.single('file'), async (req, res) => {
     const userEmail = req.oidc?.user?.email || req.query?.testEmail;
 
     const user = await owner.findOne({ email: userEmail });
