@@ -47,7 +47,8 @@
     },
     displayID:{
       type:String
-    }
+    },
+    
   });
 // Pre-save hook to generate displayID as: PROPERTY_DISPLAYID-ROOMID
 UnitSchema.pre('save', async function (next) {

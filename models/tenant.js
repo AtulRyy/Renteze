@@ -4,7 +4,8 @@ const tenantSchema = new mongoose.Schema({
     unit: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Unit',
-        required: true
+        default:''
+        // required: true
     },
     name: {
         type: String,

@@ -11,11 +11,22 @@ const propertySchema = mongoose.Schema({
     location:{
         type: String, required: true
     },
+    pin:{
+        type:Number,
+         required :true
+    },
     units: [
         {
             type: mongoose.Schema.Types.ObjectId, ref: "Unit"
         }
     ],
+    floors:{
+        type:Number,
+        required:true
+    },
+    PropertyType:{
+        type:String
+    },
     displayID:{
         type:String
     }
