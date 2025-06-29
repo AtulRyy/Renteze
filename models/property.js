@@ -15,6 +15,15 @@ const propertySchema = mongoose.Schema({
         {
             type: mongoose.Schema.Types.ObjectId, ref: "Unit"
         }
-    ]
+    ],
+    displayID:{
+        type:String
+    }
 })
+propertySchema.pre('save', function(next) {
+  if (!this.displayID && this.name) {
+    this.displayID = this.name.substring(0, 3).toUpperCase();
+  }
+  next();
+});
 module.exports=mongoose.model("Property",propertySchema)
