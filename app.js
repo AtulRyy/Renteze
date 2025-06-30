@@ -55,7 +55,9 @@ const tenantRoute = require('./routes/tenantRoute');
 const rentPaymentsRoutes = require('./routes/rentPayments');
 const uploadTenantsRoute = require('./routes/uploadTenants'); // ✅ CSV upload route
 const notificationRoutes = require('./routes/notificationRoute');
-const notificationScheduler=require('./jobs/notification');
+const notificationScheduler = require('./jobs/notification');
+const messageRoutes = require('./routes/messageRoute'); // ✅ ✅ ADD THIS LINE
+const tenantListRoute = require('./routes/tenantListRoute');
 
 // Route Mounts
 app.use('/dashboard', dashboardRoute);
@@ -70,6 +72,8 @@ app.use('/tenant', tenantRoute);
 app.use('/rent-payments', rentPaymentsRoutes);
 app.use('/upload-tenants', uploadTenantsRoute);
 app.use('/notifications', notificationRoutes);
+app.use('/messages', messageRoutes); // ✅ ✅ MOUNT MESSAGES ROUTER HERE
+app.use('/tenant', tenantListRoute); // mounted at /tenant
 
 // Root Route
 app.get('/', (req, res) => {
