@@ -57,7 +57,8 @@ const uploadTenantsRoute = require('./routes/uploadTenants'); // ✅ CSV upload 
 const notificationRoutes = require('./routes/notificationRoute');
 const notificationScheduler = require('./jobs/notification');
 const messageRoutes = require('./routes/messageRoute'); // ✅ ✅ ADD THIS LINE
-const tenantListRoute = require('./routes/tenantListRoute');
+const tenantsRoute = require('./routes/tenantListRoute'); // ✅ IMPORT KARO
+const userRoutes = require('./routes/user'); // ✅ ADD THIS LINE
 
 // Route Mounts
 app.use('/dashboard', dashboardRoute);
@@ -72,8 +73,9 @@ app.use('/tenant', tenantRoute);
 app.use('/rent-payments', rentPaymentsRoutes);
 app.use('/upload-tenants', uploadTenantsRoute);
 app.use('/notifications', notificationRoutes);
-app.use('/messages', messageRoutes); // ✅ ✅ MOUNT MESSAGES ROUTER HERE
-app.use('/tenant', tenantListRoute); // mounted at /tenant
+app.use('/messages', messageRoutes); 
+app.use('/tenants', tenantsRoute); 
+app.use(userRoutes); // ✅ ADD THIS LINE to mount /api/users/by-email/:email
 
 // Root Route
 app.get('/', (req, res) => {

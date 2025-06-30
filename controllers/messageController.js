@@ -1,75 +1,110 @@
-const mongoose = require('mongoose');
-const Message = require('../models/conversation/message');
-const User = require('../models/user'); // Adjust path to your User model
-const Tenant = require('../models/tenant'); // Adjust path to your Tenant model
+const mongoose = require("mongoose");
+const Message = require("../models/conversation/message");
+const User = require("../models/user");
+const Tenant = require("../models/tenant");
+const Owner = require("../models/owner"); // ✅ Import Owner model
 
-// Create new message
-// Create new message
+// ✅ Create new message
+
+// ✅ Create new message with correct recipient ID in notification
+// ✅ Create new message with correct recipient ID in notification
 exports.createMessage = async (req, res) => {
   try {
-    const { sender, recipients, subject, body } = req.body;
-    console.log("Incoming message payload:", { sender, recipients, subject, body });
+    const { senderEmail, recipientEmail, subject, body } = req.body;
+    console.log("Incoming payload:", { senderEmail, recipientEmail, subject, body });
 
-    if (!sender || typeof sender !== "string") {
+    if (!senderEmail || typeof senderEmail !== "string") {
       return res.status(400).json({ error: "Invalid or missing sender email" });
     }
-    if (!recipients || !Array.isArray(recipients) || recipients.length === 0) {
-      return res.status(400).json({ error: "At least one recipient ID is required" });
-    }
-    if (!recipients.every(id => mongoose.isValidObjectId(id))) {
-      return res.status(400).json({ error: "One or more recipient IDs are invalid" });
+    if (!recipientEmail || typeof recipientEmail !== "string") {
+      return res.status(400).json({ error: "Invalid or missing recipient email" });
     }
     if (!subject || !body) {
       return res.status(400).json({ error: "Subject and body are required" });
     }
 
-    // ✅ Try to find sender first in User, then Tenant
-    let senderDoc = await User.findOne({ email: sender });
+    const Owner = require("../models/user");
+    const Tenant = require("../models/tenant");
+    const Message = require("../models/conversation/message");
+    const Notification = require("../models/notification");
+
+    // ✅ Find sender in Owner or Tenant
+    let senderDoc = await Owner.findOne({ email: senderEmail });
+    if (!senderDoc) senderDoc = await Tenant.findOne({ email: senderEmail });
     if (!senderDoc) {
-      senderDoc = await Tenant.findOne({ email: sender });
-    }
-    if (!senderDoc) {
-      return res.status(400).json({ error: "Sender email does not exist in User or Tenant collection" });
+      return res.status(400).json({ error: "Sender email does not exist" });
     }
 
-    const invalidRecipients = [];
-    for (const id of recipients) {
-      const tenantExists = await Tenant.findById(id);
-      if (!tenantExists) invalidRecipients.push(id);
-    }
-    if (invalidRecipients.length > 0) {
-      return res.status(400).json({ error: `Invalid recipient IDs: ${invalidRecipients.join(", ")}` });
+    // ✅ Find recipient in Owner or Tenant
+    let recipientDoc = await Owner.findOne({ email: recipientEmail });
+    if (!recipientDoc) recipientDoc = await Tenant.findOne({ email: recipientEmail });
+    if (!recipientDoc) {
+      return res.status(400).json({ error: "Recipient email does not exist" });
     }
 
+    // ✅ Create message with recipient ID
     const message = await Message.create({
-      sender: senderDoc._id, // ✅ store sender's ObjectId
-      recipients,
+      sender: senderDoc._id,
+      recipients: [recipientDoc._id],
       subject,
-      body
+      body,
     });
 
+    // ✅ Create notification with sender + recipient ID (required)
+    const notification = await Notification.create({
+      sender: senderDoc._id,                  // ✅ IMPORTANT: required field
+      recipients: [recipientDoc._id],
+      title: `New message: ${subject}`,
+      body                                   // optional but good to include for context
+    });
+
+    console.log(`✅ Notification created for user ${recipientDoc._id}`);
     res.status(201).json(message);
   } catch (err) {
-    console.error("Error in createMessage:", err);
+    console.error("❌ Error in createMessage:", err);
     res.status(500).json({ error: err.message });
   }
 };
 
 
 
-// Get all messages for a user (sent or received)
+
+// ✅ Get all messages for a user (sent or received)
 exports.getMessagesForUser = async (req, res) => {
-  const { userId } = req.params;
   try {
-    if (!mongoose.isValidObjectId(userId)) {
-      return res.status(400).json({ error: "Invalid user ID" });
+    const identifier = req.query.email;
+    if (!identifier || typeof identifier !== "string") {
+      return res.status(400).json({ error: "Missing or invalid email query parameter" });
     }
+    console.log("Searching user by identifier:", identifier);
+
+    const User = require("../models/user");
+    const Tenant = require("../models/tenant");
+
+    const userDoc = await User.findOne({ email: new RegExp(`^${identifier}$`, "i") });
+    console.log("User collection lookup result:", userDoc);
+
+    const tenantDoc = await Tenant.findOne({ email: new RegExp(`^${identifier}$`, "i") });
+    console.log("Tenant collection lookup result:", tenantDoc);
+
+    if (!userDoc && !tenantDoc) {
+      console.log("User not found in User or Tenant collections");
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    const userIdsToSearch = [];
+    if (userDoc?._id) userIdsToSearch.push(userDoc._id);
+    if (tenantDoc?._id) userIdsToSearch.push(tenantDoc._id);
+
+    const Message = require("../models/conversation/message");
     const messages = await Message.find({
       $or: [
-        { sender: userId },
-        { recipients: userId },
-      ],
-    }).populate('sender recipients responses.responder');
+        { sender: { $in: userIdsToSearch } },
+        { recipients: { $in: userIdsToSearch } }
+      ]
+    }).populate("sender recipients responses.responder");
+
+    console.log(`Found ${messages.length} messages for user IDs: ${userIdsToSearch}`);
     res.json(messages);
   } catch (err) {
     console.error("Error in getMessagesForUser:", err);
@@ -77,7 +112,10 @@ exports.getMessagesForUser = async (req, res) => {
   }
 };
 
-// Respond to a message
+
+
+
+// ✅ Respond to a message
 exports.respondToMessage = async (req, res) => {
   const { responder, message } = req.body;
   const { id } = req.params;
@@ -95,10 +133,10 @@ exports.respondToMessage = async (req, res) => {
       id,
       {
         $push: { responses: { responder, message } },
-        $set: { status: 'responded' },
+        $set: { status: "responded" },
       },
       { new: true }
-    ).populate('sender recipients responses.responder');
+    ).populate("sender recipients responses.responder");
     if (!updated) {
       return res.status(404).json({ error: "Message not found" });
     }
@@ -109,7 +147,7 @@ exports.respondToMessage = async (req, res) => {
   }
 };
 
-// Close a message
+// ✅ Close a message
 exports.closeMessage = async (req, res) => {
   const { id } = req.params;
   try {
@@ -118,7 +156,7 @@ exports.closeMessage = async (req, res) => {
     }
     const updated = await Message.findByIdAndUpdate(
       id,
-      { $set: { status: 'closed' } },
+      { $set: { status: "closed" } },
       { new: true }
     );
     if (!updated) {
@@ -130,3 +168,5 @@ exports.closeMessage = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+

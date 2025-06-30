@@ -1,16 +1,16 @@
-// routes/tenantListRoute.js
+// routes/tenants.js
 const express = require('express');
 const router = express.Router();
-const Tenant = require('../models/tenant'); // adjust path if your model is in another folder
+const Tenant = require('../models/tenant');
 
-// GET /tenants — fetch list of tenants
+// GET /tenants - return all tenants
 router.get('/', async (req, res) => {
   try {
-    const tenants = await Tenant.find({}, '_id name email'); // fetch minimal data
+    const tenants = await Tenant.find({}, '_id name email'); // Sirf zaruri fields
     res.json(tenants);
-  } catch (err) {
-    console.error("Failed to fetch tenants:", err);
-    res.status(500).json({ error: err.message });
+  } catch (error) {
+    console.error("Failed to fetch tenants:", error);
+    res.status(500).json({ error: "Failed to fetch tenants" });
   }
 });
 
