@@ -7,8 +7,10 @@ const checkNewUser = require('./middleware/checkNewUser');
 const connectDB = require('./config/mongodb');
 const cors = require('cors');
 
+// Connect to MongoDB
 connectDB();
 
+// CORS setup
 const allowedOrigins = [
   'http://localhost:5173',
   'https://renteze-frontend.vercel.app'
@@ -28,9 +30,11 @@ app.use(cors({
   credentials: true
 }));
 
+// View engine setup
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+// Middleware
 app.use(auth0);
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
@@ -39,7 +43,7 @@ app.use('/assets', express.static('assets'));
 app.use('/uploads', express.static('uploads'));
 app.use('/invoices', express.static('invoices'));
 
-// ROUTES
+// Routes
 const dashboardRoute = require('./routes/dashboardRoute');
 const profileCompletionRoute = require('./routes/profileCompletionRoute');
 const createPropertyRoute = require('./routes/createPropertyRoute');
@@ -49,7 +53,11 @@ const addTenantRoute = require('./routes/addTenantRoute');
 const inviteTenantRoute = require('./routes/inviteTenantRoute');
 const tenantRoute = require('./routes/tenantRoute');
 const rentPaymentsRoutes = require('./routes/rentPayments');
+const uploadTenantsRoute = require('./routes/uploadTenants'); // ✅ CSV upload route
+const notificationRoutes = require('./routes/notificationRoute');
+const notificationScheduler=require('./jobs/notification');
 
+// Route Mounts
 app.use('/dashboard', dashboardRoute);
 app.use('/complete-profile', profileCompletionRoute);
 app.use('/create-property', createPropertyRoute);
@@ -60,6 +68,8 @@ app.use('/add-tenant', addTenantRoute);
 app.use('/invite-tenant', inviteTenantRoute);
 app.use('/tenant', tenantRoute);
 app.use('/rent-payments', rentPaymentsRoutes);
+app.use('/upload-tenants', uploadTenantsRoute);
+app.use('/notifications', notificationRoutes);
 
 // Root Route
 app.get('/', (req, res) => {
@@ -73,7 +83,7 @@ app.get('/', (req, res) => {
 // Rent status updater
 const updateRentStatusIfNeeded = require('./utils/updateRentDue');
 updateRentStatusIfNeeded();
-setInterval(updateRentStatusIfNeeded, 24 * 60 * 60 * 1000);
+setInterval(updateRentStatusIfNeeded, 24 * 60 * 60 * 1000); // once daily
 
 // Start server
 app.listen(3000, () => {
