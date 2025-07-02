@@ -1,80 +1,78 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const tenantSchema = new mongoose.Schema({
+const tenantSchema = new mongoose.Schema(
+  {
     unit: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Unit',
-        required: true
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Unit",
+      required: true,
     },
     name: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     email: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     phone: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     nameOfBusiness: {
-        type: String,
-        required: true
+      type: String,
+      default: "",
     },
     natureOfBusiness: {
-        type: String,
-        required: true
+      type: String,
+      default: "",
     },
     rent: {
-        type: Number,
-        required: true
+      type: Number,
+      required: true,
     },
     advance: {
-        type: Number,
-        required: true
+      type: Number,
+      required: true,
     },
     agreementStartDate: {
-        type: Date,
-        required: true
+      type: Date,
+      required: true,
     },
     agreementEndDate: {
-        type: Date,
-        required: true
+      type: Date,
+      required: true,
     },
     annualIncrement: {
-        type: Number,
-        required: true
+      type: Number,
+      required: true,
     },
     uploads: {
-        proofOfAddress: {
-            type: String, // store the file path or cloud URL
-            required: true
-        },
-        proofOfBusiness: {
-            type: String,
-            required: true
-        },
-        proofOfIdentity: {
-            type: String,
-            required: true
-        },
-        agreementDraft: {
-            type: String,
-            required: true
-        },
-        agreementCopy: {
-            type: String,
-            required: true
-        }
+      proofOfAddress: {
+        type: String,
+      },
+      proofOfBusiness: {
+        type: String,
+      },
+      proofOfIdentity: {
+        type: String,
+      },
+      agreementDraft: {
+        type: String,
+      },
+      agreementCopy: {
+        type: String,
+      },
     },
     rentStatus: {
-        type: String,
-        enum: ['due', 'overdue', 'paid','partial'],
-        default: 'due'
-    }
-}, {
-    timestamps: true
-});
+      type: String,
+      enum: ["due", "overdue", "paid", "partial"],
+      default: "due",
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
 module.exports = mongoose.model("Tenant", tenantSchema);

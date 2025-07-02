@@ -73,7 +73,6 @@ exports.getNotificationsByEmail = async (req, res) => {
     const { email } = req.query;
     if (!email) return res.status(400).json({ error: "Email is required" });
 
-    console.log(`🔎 Looking for user with email: ${email}`);
     let user =
       (await Owner.findOne({ email })) || (await Tenant.findOne({ email }));
 
@@ -82,16 +81,13 @@ exports.getNotificationsByEmail = async (req, res) => {
       return res.status(404).json({ error: "User not found" });
     }
 
-    console.log(`✅ Found user:`, user);
 
-    // Wrap find in inner try-catch to catch errors from populate etc.
     try {
       const notifications = await Notification.find({ recipients: user._id })
         .sort({ createdAt: -1 })
         .populate("sender", "email")
         .populate("recipients", "email");
 
-      console.log(`✅ Fetched ${notifications.length} notifications for user ${user._id}`);
       res.json({ notifications });
     } catch (innerErr) {
       console.error("🔥 Inner error during notifications fetch:", innerErr);
@@ -148,7 +144,6 @@ exports.markAsRead = async (req, res) => {
 };
 
 
-// ✅ PATCH /notifications/markAllRead?email=user@example.com
 exports.markAllAsRead = async (req, res) => {
   try {
     const { email } = req.query;
@@ -158,15 +153,13 @@ exports.markAllAsRead = async (req, res) => {
       (await Owner.findOne({ email })) || (await Tenant.findOne({ email }));
     if (!user) return res.status(404).json({ error: "User not found" });
 
-    await Notification.updateMany(
-      { recipients: user._id, isReadBy: { $ne: user._id } },
-      { $addToSet: { isReadBy: user._id } }
-    );
+    // Delete all notifications for this user
+    await Notification.deleteMany({ recipients: user._id });
 
-    console.log(`✅ All notifications marked as read for user ${user._id}`);
-    res.json({ message: "All notifications marked as read." });
+    res.json({ message: "All notifications deleted for this user." });
   } catch (err) {
-    console.error("❌ Error in markAllAsRead:", err);
+    console.error("Error deleting notifications:", err);
     res.status(500).json({ error: "Internal server error" });
   }
 };
+

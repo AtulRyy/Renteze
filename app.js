@@ -6,6 +6,8 @@ const { requiresAuth } = require('express-openid-connect');
 const checkNewUser = require('./middleware/checkNewUser');
 const connectDB = require('./config/mongodb');
 const cors = require('cors');
+const propertyTenantRoute = require('./routes/propertyTenantRoute');
+const authRoutes = require('./routes/auth');
 
 // Connect to MongoDB
 connectDB();
@@ -42,6 +44,7 @@ app.use(express.json());
 app.use('/assets', express.static('assets'));
 app.use('/uploads', express.static('uploads'));
 app.use('/invoices', express.static('invoices'));
+app.use('/property', propertyTenantRoute);
 
 // Routes
 const dashboardRoute = require('./routes/dashboardRoute');
@@ -76,6 +79,8 @@ app.use('/notifications', notificationRoutes);
 app.use('/messages', messageRoutes); 
 app.use('/tenants', tenantsRoute); 
 app.use(userRoutes); // ✅ ADD THIS LINE to mount /api/users/by-email/:email
+app.use('/api/users', userRoutes);
+app.use('/api', authRoutes); // ✅ <<<<< THIS LINE FIXES YOUR 404
 
 // Root Route
 app.get('/', (req, res) => {

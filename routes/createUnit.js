@@ -6,9 +6,12 @@ const Unit = require('../models/unit');
 
 const router = express.Router();
 
-// GET route to show form
-router.get('/:id', requiresAuth(), async (req, res) => {
-  const propertyId = req.params.id; 
+/* ===============================
+   GET /unit/:id/form
+   Server-rendered form to create a unit
+================================== */
+router.get('/:id/form', requiresAuth(), async (req, res) => {
+  const propertyId = req.params.id;
   try {
     const user = await Owner.findOne({ email: req.oidc.user.email });
     const property = await Property.findById(propertyId);
@@ -26,8 +29,8 @@ router.get('/:id', requiresAuth(), async (req, res) => {
       name: user.name,
       error: null,
       formData: {},
-      propertyId: property._id,  // Pass propertyId to the form for use in POST
-      propertyName: property.name,  // Optional: send property name if needed
+      propertyId: property._id,
+      propertyName: property.name,
     });
   } catch (err) {
     console.error(err);
@@ -40,10 +43,12 @@ router.get('/:id', requiresAuth(), async (req, res) => {
   }
 });
 
-// POST route to create unit
-router.post('/:id', /* requiresAuth(), */ async (req, res) => {
+/* ===============================
+   POST /unit/:id
+   API endpoint to create a unit
+================================== */
+router.post('/:id', async (req, res) => {
   const propertyId = req.params.id;
-
   const {
     roomId,
     roomArea,
@@ -72,10 +77,7 @@ router.post('/:id', /* requiresAuth(), */ async (req, res) => {
 
     const property = await Property.findById(propertyId);
     if (!property) {
-      return res.status(404).json({
-        success: false,
-        message: 'Property not found'
-      });
+      return res.status(404).json({ success: false, message: 'Property not found' });
     }
 
     property.units.push(newUnit._id);
@@ -84,7 +86,7 @@ router.post('/:id', /* requiresAuth(), */ async (req, res) => {
     res.status(201).json({
       success: true,
       message: 'Unit created successfully',
-      data: newUnit
+      data: newUnit,
     });
   } catch (error) {
     console.error(error);
@@ -92,10 +94,42 @@ router.post('/:id', /* requiresAuth(), */ async (req, res) => {
       success: false,
       message: 'Failed to create unit',
       error: error.message,
-      formData: req.body
+      formData: req.body,
     });
   }
 });
 
+/* ===============================
+   GET /unit/:id
+   API endpoint to fetch a unit,
+   populated with tenant & property
+================================== */
+router.get('/:id', async (req, res) => {
+  const { id } = req.params;
+  const { testEmail } = req.query; // optional: track/test requests by email
+
+  try {
+    const unit = await Unit.findById(id)
+      .populate('tenant')
+      .populate('propertyId');
+
+    if (!unit) {
+      return res.status(404).json({ success: false, message: 'Unit not found' });
+    }
+
+    console.log('✅ API returning unit with populated tenant:', unit);
+
+    return res.status(200).json({
+      success: true,
+      data: { unit },
+    });
+  } catch (err) {
+    console.error('❌ Error fetching unit with tenant:', err);
+    return res.status(500).json({
+      success: false,
+      message: err.message || 'Internal Server Error',
+    });
+  }
+});
 
 module.exports = router;

@@ -12,7 +12,7 @@ const NotificationSchema = new mongoose.Schema({
     required: true
   }],
   title: { type: String, required: true },
-  body: { type: String }, // 👈 agar body bhi chahiye notifications me
+  body: { type: String }, 
   isReadBy: [{
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     readAt: { type: Date }
