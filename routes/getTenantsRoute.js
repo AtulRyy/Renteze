@@ -5,9 +5,13 @@ const Property = require('../models/property');
 const Unit = require('../models/unit');
 const Tenant = require('../models/tenant');
 
-// GET /tenants/owner/email/:email
-router.get('/owner/email/:email', async (req, res) => {
-  const email = req.params.email;
+// GET /tenants/owner-by-email?email=example@example.com
+router.get('/owner-by-email', async (req, res) => {
+  const email = req.query.email;
+
+  if (!email) {
+    return res.status(400).json({ message: 'Email query parameter is required.' });
+  }
 
   try {
     const owner = await Owner.findOne({ email }).select('_id');
