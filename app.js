@@ -56,6 +56,7 @@ const rentPaymentsRoutes = require('./routes/rentPayments');
 const uploadTenantsRoute = require('./routes/uploadTenants'); // ✅ CSV upload route
 const notificationRoutes = require('./routes/notificationRoute');
 const notificationScheduler=require('./jobs/notification');
+const uploadUnitsRoute = require('./routes/uploadUnits');
 
 // Route Mounts
 app.use('/dashboard', dashboardRoute);
@@ -69,6 +70,7 @@ app.use('/invite-tenant', inviteTenantRoute);
 app.use('/tenant', tenantRoute);
 app.use('/rent-payments', rentPaymentsRoutes);
 app.use('/upload-tenants', uploadTenantsRoute);
+app.use('/upload-units',uploadUnitsRoute);
 app.use('/notifications', notificationRoutes);
 
 // Root Route
