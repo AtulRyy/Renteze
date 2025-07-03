@@ -6,6 +6,7 @@ const Tenant = require('../models/tenant');
 const { requiresAuth } = require('express-openid-connect');
 const issue = require('../models/issue');
 
+
 router.post('/update-issue-status/:id', async (req, res) => {
     const issueId = req.params.id;
     const newStatus = req.body.status;

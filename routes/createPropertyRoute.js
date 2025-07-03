@@ -71,6 +71,42 @@ router.post('/', /* requiresAuth(), */ async (req, res) => {
   }
 });
 
+// ADD THIS TO createProperty.js (below your existing routes)
+
+router.get('/:id/tenants', async (req, res) => {
+  try {
+    const userEmail = req.oidc?.user?.email || req.query?.testEmail;
+    const user = await owner.findOne({ email: userEmail });
+    if (!user) {
+      return res.status(401).json({ success: false, message: 'Unauthorized: user not found' });
+    }
+
+    const propertyId = req.params.id;
+    const propertyDoc = await property.findById(propertyId);
+
+    if (!propertyDoc) {
+      return res.status(404).json({ success: false, message: 'Property not found' });
+    }
+
+    if (propertyDoc.ownerId.toString() !== user._id.toString()) {
+      return res.status(403).json({ success: false, message: 'Unauthorized: property does not belong to you' });
+    }
+
+    const Tenant = require('../models/tenant');
+
+    // Fetch all tenants where their `unit` belongs to this property
+    const unitsInProperty = await require('../models/unit').find({ propertyId: propertyId });
+    const unitIds = unitsInProperty.map(u => u._id);
+
+    const tenants = await Tenant.find({ unit: { $in: unitIds } }).sort({ createdAt: -1 });
+
+    res.status(200).json({ success: true, tenants });
+  } catch (err) {
+    console.error('[GET /property/:id/tenants] Error:', err);
+    res.status(500).json({ success: false, message: 'Server error', error: err.message });
+  }
+});
+
 
 
 module.exports = router;

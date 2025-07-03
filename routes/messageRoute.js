@@ -5,8 +5,8 @@ const messageController = require('../controllers/messageController');
 // Create message
 router.post('/', messageController.createMessage);
 
-// Get messages for a user
-router.get('/user/:userId', messageController.getMessagesForUser);
+// ✅ FIXED: Get messages for a user using query param ?email=
+router.get('/user', messageController.getMessagesForUser);
 
 // Respond to message
 router.post('/:id/respond', messageController.respondToMessage);
