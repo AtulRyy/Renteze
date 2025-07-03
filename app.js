@@ -62,25 +62,28 @@ const notificationScheduler = require('./jobs/notification');
 const messageRoutes = require('./routes/messageRoute'); // ✅ ✅ ADD THIS LINE
 const tenantsRoute = require('./routes/tenantListRoute'); // ✅ IMPORT KARO
 const userRoutes = require('./routes/user'); // ✅ ADD THIS LINE
+const uploadUnitsRoute = require('./routes/uploadUnits');
+const getAllTenantRoutes = require('./routes/getTenantsRoute');
 
 // Route Mounts
 app.use('/dashboard', dashboardRoute);
 app.use('/complete-profile', profileCompletionRoute);
 app.use('/create-property', createPropertyRoute);
-// ✅ Removed outdated createUnit and viewUnit mounts
 app.use('/property', viewPropertyRoute);
-app.use('/unit', unitRoute); // ✅ single unified route for all unit operations
+app.use('/unit', unitRoute); 
 app.use('/add-tenant', addTenantRoute);
 app.use('/invite-tenant', inviteTenantRoute);
 app.use('/tenant', tenantRoute);
 app.use('/rent-payments', rentPaymentsRoutes);
 app.use('/upload-tenants', uploadTenantsRoute);
+app.use('/upload-units',uploadUnitsRoute);
 app.use('/notifications', notificationRoutes);
 app.use('/messages', messageRoutes); 
 app.use('/tenants', tenantsRoute); 
-app.use(userRoutes); // ✅ ADD THIS LINE to mount /api/users/by-email/:email
+app.use(userRoutes); 
 app.use('/api/users', userRoutes);
-app.use('/api', authRoutes); // ✅ <<<<< THIS LINE FIXES YOUR 404
+app.use('/api', authRoutes); 
+app.use('/tenants', getAllTenantRoutes);
 
 // Root Route
 app.get('/', (req, res) => {

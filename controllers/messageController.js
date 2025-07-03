@@ -82,10 +82,8 @@ exports.getMessagesForUser = async (req, res) => {
     const Tenant = require("../models/tenant");
 
     const userDoc = await User.findOne({ email: new RegExp(`^${identifier}$`, "i") });
-    console.log("User collection lookup result:", userDoc);
 
     const tenantDoc = await Tenant.findOne({ email: new RegExp(`^${identifier}$`, "i") });
-    console.log("Tenant collection lookup result:", tenantDoc);
 
     if (!userDoc && !tenantDoc) {
       console.log("User not found in User or Tenant collections");
