@@ -6,6 +6,8 @@ const { requiresAuth } = require('express-openid-connect');
 const checkNewUser = require('./middleware/checkNewUser');
 const connectDB = require('./config/mongodb');
 const cors = require('cors');
+const propertyTenantRoute = require('./routes/propertyTenantRoute');
+const authRoutes = require('./routes/auth');
 
 // Connect to MongoDB
 connectDB();
@@ -42,6 +44,7 @@ app.use(express.json());
 app.use('/assets', express.static('assets'));
 app.use('/uploads', express.static('uploads'));
 app.use('/invoices', express.static('invoices'));
+app.use('/property', propertyTenantRoute);
 
 // Routes
 const dashboardRoute = require('./routes/dashboardRoute');
@@ -55,21 +58,32 @@ const tenantRoute = require('./routes/tenantRoute');
 const rentPaymentsRoutes = require('./routes/rentPayments');
 const uploadTenantsRoute = require('./routes/uploadTenants'); // ✅ CSV upload route
 const notificationRoutes = require('./routes/notificationRoute');
-const notificationScheduler=require('./jobs/notification');
+const notificationScheduler = require('./jobs/notification');
+const messageRoutes = require('./routes/messageRoute'); // ✅ ✅ ADD THIS LINE
+const tenantsRoute = require('./routes/tenantListRoute'); // ✅ IMPORT KARO
+const userRoutes = require('./routes/user'); // ✅ ADD THIS LINE
+const uploadUnitsRoute = require('./routes/uploadUnits');
+const getAllTenantRoutes = require('./routes/getTenantsRoute');
 
 // Route Mounts
 app.use('/dashboard', dashboardRoute);
 app.use('/complete-profile', profileCompletionRoute);
 app.use('/create-property', createPropertyRoute);
-// ✅ Removed outdated createUnit and viewUnit mounts
 app.use('/property', viewPropertyRoute);
-app.use('/unit', unitRoute); // ✅ single unified route for all unit operations
+app.use('/unit', unitRoute); 
 app.use('/add-tenant', addTenantRoute);
 app.use('/invite-tenant', inviteTenantRoute);
 app.use('/tenant', tenantRoute);
 app.use('/rent-payments', rentPaymentsRoutes);
 app.use('/upload-tenants', uploadTenantsRoute);
+app.use('/upload-units',uploadUnitsRoute);
 app.use('/notifications', notificationRoutes);
+app.use('/messages', messageRoutes); 
+app.use('/tenants', tenantsRoute); 
+app.use(userRoutes); 
+app.use('/api/users', userRoutes);
+app.use('/api', authRoutes); 
+app.use('/tenants', getAllTenantRoutes);
 
 // Root Route
 app.get('/', (req, res) => {

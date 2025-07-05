@@ -1,12 +1,11 @@
 const express = require('express');
 const { requiresAuth } = require('express-openid-connect');
 const Owner = require('../models/owner');
-const owner = require('../models/owner');
 const tenant = require('../models/tenant');
 const userModel = require('../models/user');
 const issue = require('../models/issue');
 const Property = require('../models/property');
-const Unit = require('../models/unit'); // Make sure this path is correct
+const Unit = require('../models/unit');
 const router = express.Router();
 
 router.get('/', /* requiresAuth(), */ async (req, res) => {
@@ -29,6 +28,7 @@ router.get('/', /* requiresAuth(), */ async (req, res) => {
       const issues = await issue.find();
 
       return res.json({
+        role: user.role,               // ✅ ROLE ADDED
         name: ownerUser.name,
         properties: ownerUser.properties,
         issues: issues
@@ -42,11 +42,16 @@ router.get('/', /* requiresAuth(), */ async (req, res) => {
       }
 
       return res.json({
+        role: user.role,               // ✅ ROLE ADDED
         tenant: tenantUser
       });
 
     } else if (user.role === 'admin') {
-      return res.send('Admin dashboard under construction...');
+      // You can later customize admin dashboard response
+      return res.json({
+        role: user.role,               // ✅ ROLE ADDED
+        message: 'Admin dashboard under construction...'
+      });
     }
 
   } catch (err) {
@@ -68,12 +73,12 @@ router.delete('/:propertyId', async (req, res) => {
       });
     }
 
-    // 1. Delete all associated units
+    // 1. Delete associated units
     if (propertyToDelete.units && propertyToDelete.units.length > 0) {
       await Unit.deleteMany({ _id: { $in: propertyToDelete.units } });
     }
 
-    // 2. Delete the property
+    // 2. Delete the property itself
     await Property.findByIdAndDelete(propertyId);
 
     // 3. Remove property reference from owner's properties list
