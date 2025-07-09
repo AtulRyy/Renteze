@@ -2,14 +2,15 @@ const express = require("express");
 const router = express.Router();
 const Tenant = require("../models/tenant");
 const Unit = require("../models/unit");
+const RentPayment = require("../models/rentPayment");
 
-// HTML form GET route (if you still use it)
+// HTML form GET route (unchanged)
 router.get("/:id", (req, res) => {
   const unitId = req.params.id;
   res.render("addTenant", { error: null, unitId });
 });
 
-// HTML form POST route — without multer
+// HTML form POST route — without multer (unchanged)
 router.post("/:id", async (req, res) => {
   const unitId = req.params.id;
   try {
@@ -26,7 +27,16 @@ router.post("/:id", async (req, res) => {
       annualIncrement,
     } = req.body;
 
-    if (!name || !email || !phone || !rent || !advance || !agreementStartDate || !agreementEndDate || !annualIncrement) {
+    if (
+      !name ||
+      !email ||
+      !phone ||
+      !rent ||
+      !advance ||
+      !agreementStartDate ||
+      !agreementEndDate ||
+      !annualIncrement
+    ) {
       return res.render("addTenant", {
         error: "All required fields must be provided.",
         unitId,
@@ -54,7 +64,10 @@ router.post("/:id", async (req, res) => {
     });
 
     await tenant.save();
-    await Unit.findByIdAndUpdate(unitId, { isOccupied: true, tenant: tenant._id });
+    await Unit.findByIdAndUpdate(unitId, {
+      isOccupied: true,
+      tenant: tenant._id,
+    });
 
     return res.send("Success");
   } catch (err) {
@@ -66,9 +79,10 @@ router.post("/:id", async (req, res) => {
   }
 });
 
-// API endpoint to create tenant (React frontend)
+// API endpoint: create tenant (used by React frontend)
 router.post("/property/:propertyId/tenant", async (req, res) => {
   const { propertyId } = req.params;
+  const { testEmail } = req.query;
   const {
     unit,
     name,
@@ -81,57 +95,160 @@ router.post("/property/:propertyId/tenant", async (req, res) => {
     agreementStartDate,
     agreementEndDate,
     annualIncrement,
+    paymentHistory,
   } = req.body;
-  const { testEmail } = req.query;
 
-  console.log("📥 Incoming request:", { propertyId, testEmail, body: req.body });
+  console.log("📥 Incoming tenant data:", JSON.stringify(req.body, null, 2));
+  console.log("📦 Property ID:", propertyId);
 
   try {
-    if (!unit || !name || !email || !phone || !rent || !advance || !agreementStartDate || !agreementEndDate || !annualIncrement) {
+    if (
+      !unit || !name || !email || !phone ||
+      !rent || !advance || !agreementStartDate ||
+      !agreementEndDate || !annualIncrement
+    ) {
       return res.status(400).json({ success: false, message: "Missing required fields" });
-    }
-
-    const unitDoc = await Unit.findOne({ _id: unit, property: propertyId });
-    if (!unitDoc) {
-      return res.status(400).json({ success: false, message: "Invalid unit ID or unit does not belong to the property" });
     }
 
     if (!testEmail) {
       return res.status(401).json({ success: false, message: "Unauthorized: testEmail required" });
     }
 
+    const unitDoc = await Unit.findOne({ _id: unit, property: propertyId });
+    if (!unitDoc) {
+      console.log("❌ Invalid unit or unit doesn't belong to property.");
+      return res.status(400).json({
+        success: false,
+        message: "Invalid unit ID or unit does not belong to the property"
+      });
+    }
+
+    if (
+      (nameOfBusiness && nameOfBusiness.toLowerCase().startsWith("n/a")) ||
+      (natureOfBusiness && natureOfBusiness.toLowerCase().startsWith("n/a"))
+    ) {
+      return res.status(400).json({
+        success: false,
+        message: "Name of Business and Nature of Business cannot start with 'N/A'"
+      });
+    }
+
+    // ✅ Validate and Normalize Payment History
+    let validatedPaymentHistory = [];
+    if (Array.isArray(paymentHistory) && paymentHistory.length > 0) {
+      for (const payment of paymentHistory) {
+        console.log("🔍 Processing payment:", payment);
+
+        if (!payment.amount || !payment.invoiceMonth || !payment.status) {
+          console.warn("⚠️ Skipping payment due to missing fields:", payment);
+          continue; // skip this entry, don't stop entire request
+        }
+
+        if (!/^[A-Za-z]+ \d{4}$/.test(payment.invoiceMonth)) {
+          console.warn("⚠️ Skipping due to invalid invoiceMonth format:", payment.invoiceMonth);
+          continue;
+        }
+
+        const validInvoiceTypes = ["Rent", "Maintenance", "Advance", "Other"];
+        const invoiceType = payment.invoiceType || "Rent";
+        if (!validInvoiceTypes.includes(invoiceType)) {
+          console.warn("⚠️ Skipping due to invalid invoiceType:", invoiceType);
+          continue;
+        }
+
+        const [month, year] = payment.invoiceMonth.split(" ");
+        const normalizedInvoiceMonth = `${month.charAt(0).toUpperCase() + month.slice(1).toLowerCase()} ${year}`;
+
+        validatedPaymentHistory.push({
+          amount: Number(payment.amount),
+          invoiceMonth: normalizedInvoiceMonth,
+          invoiceType,
+          status: payment.status,
+          paidOn: payment.paidOn ? new Date(payment.paidOn) : null,
+          paymentMethod: payment.paymentMethod || "-"
+        });
+      }
+    }
+
+    // ✅ Add default advance entry if no valid payments provided
+    if (validatedPaymentHistory.length === 0) {
+      validatedPaymentHistory.push({
+        amount: Number(advance),
+        invoiceMonth: new Date().toLocaleString("default", { month: "long", year: "numeric" }),
+        invoiceType: "Advance",
+        status: "Paid",
+        paidOn: new Date(),
+        paymentMethod: "Advance"
+      });
+    }
+
+    console.log("✅ Validated Payment History:", validatedPaymentHistory);
+
+    // ✅ Create Tenant
     const tenant = new Tenant({
       unit,
       name,
       email,
       phone,
-      nameOfBusiness,
-      natureOfBusiness,
+      nameOfBusiness: nameOfBusiness || "",
+      natureOfBusiness: natureOfBusiness || "",
       rent: Number(rent),
       advance: Number(advance),
       agreementStartDate: new Date(agreementStartDate),
       agreementEndDate: new Date(agreementEndDate),
       annualIncrement: Number(annualIncrement),
+      paymentHistory: validatedPaymentHistory,
       uploads: {},
+      rentStatus: "due"
     });
 
-    await tenant.save();
-    await Unit.findByIdAndUpdate(unit, { isOccupied: true, tenant: tenant._id });
+    await tenant.validate();
+    const savedTenant = await tenant.save();
 
-    console.log("✅ Tenant created successfully:", tenant);
+    await Unit.findByIdAndUpdate(unit, {
+      isOccupied: true,
+      tenant: savedTenant._id
+    });
 
-    return res.status(201).json({ success: true, message: "Tenant created successfully", tenant });
+    // ✅ Sync to RentPayment Collection
+    const rentPayments = validatedPaymentHistory.map((payment) => ({
+      tenant: savedTenant._id,
+      amountPaid: payment.amount,
+      paymentDate: payment.paidOn || new Date(),
+      modeOfTransfer:
+        payment.paymentMethod?.toLowerCase() === "-"
+          ? "cash"
+          : payment.paymentMethod?.toLowerCase() || "cash",
+      remarks: payment.invoiceType || "Rent",
+      invoiceFile: ""
+    }));
+
+    await RentPayment.insertMany(rentPayments);
+    console.log("✅ RentPayments synced to RentPayment collection");
+
+    return res.status(201).json({
+      success: true,
+      message: "Tenant created successfully",
+      tenant: savedTenant
+    });
+
   } catch (err) {
-    console.error("❌ Unexpected server error:", err);
-    return res.status(500).json({ success: false, message: err.message || "Server error" });
+    console.error("❌ Server error:", err);
+    return res.status(500).json({
+      success: false,
+      message: err.message || "Server error"
+    });
   }
 });
 
-// API endpoint: get all tenants (with property & unit info)
+
+// API endpoint: get all tenants (with property & unit info) (unchanged)
 router.get("/", async (req, res) => {
   const { testEmail } = req.query;
   if (!testEmail) {
-    return res.status(401).json({ success: false, message: "Unauthorized: testEmail required" });
+    return res
+      .status(401)
+      .json({ success: false, message: "Unauthorized: testEmail required" });
   }
 
   try {
@@ -140,7 +257,7 @@ router.get("/", async (req, res) => {
       populate: { path: "propertyId" },
     });
 
-    const tenantList = tenants.map(t => {
+    const tenantList = tenants.map((t) => {
       const unit = t.unit;
       const property = unit?.propertyId;
 
@@ -172,7 +289,9 @@ router.get("/", async (req, res) => {
     res.json({ success: true, tenants: tenantList });
   } catch (err) {
     console.error("❌ Error fetching tenants:", err);
-    res.status(500).json({ success: false, message: err.message || "Server error" });
+    res
+      .status(500)
+      .json({ success: false, message: err.message || "Server error" });
   }
 });
 

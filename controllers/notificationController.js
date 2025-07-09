@@ -67,7 +67,6 @@ exports.sendNotification = async (req, res) => {
 };
 
 // ✅ GET /notifications?email=user@example.com
-// ✅ GET /notifications?email=user@example.com
 exports.getNotificationsByEmail = async (req, res) => {
   try {
     const { email } = req.query;

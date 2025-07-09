@@ -14,6 +14,7 @@ router.get('/owner-by-email', async (req, res) => {
   }
 
   try {
+    // 1️⃣ Owner find
     const owner = await Owner.findOne({ email }).select('_id');
     if (!owner) {
       return res.status(404).json({ message: 'Owner not found with this email.' });
@@ -21,6 +22,7 @@ router.get('/owner-by-email', async (req, res) => {
 
     const ownerId = owner._id;
 
+    // 2️⃣ Owner ki properties find karo
     const properties = await Property.find({ ownerId }).select('_id');
     const propertyIds = properties.map(p => p._id);
 
@@ -28,15 +30,24 @@ router.get('/owner-by-email', async (req, res) => {
       return res.status(404).json({ message: 'No properties found for this owner.' });
     }
 
-    const units = await Unit.find({ propertyId: { $in: propertyIds } }).select('_id');
+    // 3️⃣ Properties ke units find karo
+    const units = await Unit.find({ propertyId: { $in: propertyIds } }).select('_id propertyId roomId');
     const unitIds = units.map(u => u._id);
 
     if (unitIds.length === 0) {
       return res.status(404).json({ message: 'No units found under these properties.' });
     }
 
+    // 4️⃣ Tenants fetch karo aur unke units ko populate karo
     const tenants = await Tenant.find({ unit: { $in: unitIds } })
-      .populate('unit', 'roomId propertyId')
+      .populate({
+        path: 'unit',
+        select: 'roomId propertyId',
+        populate: {
+          path: 'propertyId', // 🟢 propertyId ko bhi populate karo
+          select: 'name',     // sirf property ka naam chahiye
+        },
+      })
       .lean();
 
     res.status(200).json({ count: tenants.length, tenants });
