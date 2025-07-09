@@ -15,8 +15,10 @@ connectDB();
 // CORS setup
 const allowedOrigins = [
   'http://localhost:5173',
+  'https://localhost:5173',   
   'https://renteze-frontend.vercel.app'
 ];
+
 
 app.use(cors({
   origin: function (origin, callback) {
@@ -51,19 +53,21 @@ const dashboardRoute = require('./routes/dashboardRoute');
 const profileCompletionRoute = require('./routes/profileCompletionRoute');
 const createPropertyRoute = require('./routes/createPropertyRoute');
 const viewPropertyRoute = require('./routes/viewProperty');
-const unitRoute = require('./routes/unit'); // ✅ consolidated route
+const unitRoute = require('./routes/unit'); 
 const addTenantRoute = require('./routes/addTenantRoute');
 const inviteTenantRoute = require('./routes/inviteTenantRoute');
 const tenantRoute = require('./routes/tenantRoute');
 const rentPaymentsRoutes = require('./routes/rentPayments');
-const uploadTenantsRoute = require('./routes/uploadTenants'); // ✅ CSV upload route
+const uploadTenantsRoute = require('./routes/uploadTenants');
 const notificationRoutes = require('./routes/notificationRoute');
 const notificationScheduler = require('./jobs/notification');
-const messageRoutes = require('./routes/messageRoute'); // ✅ ✅ ADD THIS LINE
-const tenantsRoute = require('./routes/tenantListRoute'); // ✅ IMPORT KARO
-const userRoutes = require('./routes/user'); // ✅ ADD THIS LINE
+const messageRoutes = require('./routes/messageRoute');
+const tenantsRoute = require('./routes/tenantListRoute');
+const userRoutes = require('./routes/user');
 const uploadUnitsRoute = require('./routes/uploadUnits');
 const getAllTenantRoutes = require('./routes/getTenantsRoute');
+const inviteAdminRoutes = require('./routes/inviteAdminRoute'); // ✅ ADDED YOUR ROUTE
+const recycleBinRoutes = require("./routes/recycleBin"); // ✅ ADDED RECYCLE BIN ROUTE
 
 // Route Mounts
 app.use('/dashboard', dashboardRoute);
@@ -76,14 +80,15 @@ app.use('/invite-tenant', inviteTenantRoute);
 app.use('/tenant', tenantRoute);
 app.use('/rent-payments', rentPaymentsRoutes);
 app.use('/upload-tenants', uploadTenantsRoute);
-app.use('/upload-units',uploadUnitsRoute);
+app.use('/upload-units', uploadUnitsRoute);
 app.use('/notifications', notificationRoutes);
 app.use('/messages', messageRoutes); 
 app.use('/tenants', tenantsRoute); 
-app.use(userRoutes); 
 app.use('/api/users', userRoutes);
-app.use('/api', authRoutes); 
+app.use('/api', authRoutes);
 app.use('/tenants', getAllTenantRoutes);
+app.use('/', inviteAdminRoutes); // ✅ MOUNTED YOUR ROUTE
+app.use("/recycle-bin", recycleBinRoutes);
 
 // Root Route
 app.get('/', (req, res) => {
