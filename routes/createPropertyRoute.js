@@ -108,5 +108,4 @@ router.get('/:id/tenants', async (req, res) => {
 });
 
 
-
 module.exports = router;
