@@ -16,7 +16,8 @@ connectDB();
 const allowedOrigins = [
   'http://localhost:5173',
   'https://localhost:5173',   
-  'https://renteze-frontend.vercel.app'
+  'https://renteze-frontend.vercel.app',
+  "https://hoppscotch.io"
 ];
 
 
