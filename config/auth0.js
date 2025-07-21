@@ -1,18 +1,24 @@
 const express = require('express');
-const { auth } = require('express-openid-connect');
+const { auth, requiresAuth } = require('express-openid-connect');
 const app = express();
-require('dotenv').config();
+require('dotenv').config()
 
 const config = {
   authRequired: false,
   auth0Logout: true,
-  secret: process.env.JWT_TOKEN,          
-  baseURL: process.env.BASEURL,           
-  clientID: process.env.AUTH0_CLIENT_ID,  
-  issuerBaseURL: `https://${process.env.AUTH0_DOMAIN}`, 
-  clientSecret: process.env.AUTH0_CLIENT_SECRET,        
+  baseURL: process.env.BASEURL,
+  clientID: process.env.CLIENTID,
+  issuerBaseURL: process.env.ISSUER,
+  secret: process.env.SECRET
 };
 
-const auth0 = auth(config);
+// The `auth` router attaches /login, /logout
+// and /callback routes to the baseURL
+const auth0=auth(config)
 
-module.exports = { auth0 };
+module.exports={auth0}
+
+
+
+
+

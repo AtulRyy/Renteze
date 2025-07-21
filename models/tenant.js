@@ -1,40 +1,32 @@
 const mongoose = require("mongoose");
 
-const PaymentSchema = new mongoose.Schema({
+const paymentSchema = new mongoose.Schema({
   amount: { type: Number, required: true },
   invoiceMonth: { type: String, required: true },
-  invoiceType: { type: String, enum: ["Rent", "Maintenance", "Advance", "Other"], default: "Rent" },
-  status: { type: String, enum: ["Paid", "Unpaid"], required: true },
-  paidOn: { type: Date },
-  paymentMethod: { type: String, default: "-" }
+  invoiceType: { type: String, required: true },
+  status: { type: String, required: true },
+  paidOn: { type: Date, default: null },
+  paymentMethod: { type: String, default: "-" },
 }, { _id: false });
 
-const TenantSchema = new mongoose.Schema({
-  unit: { type: mongoose.Schema.Types.ObjectId, ref: "Unit", required: true },
-  name: { type: String, required: true },
-  email: { type: String, required: true },
-  phone: { type: String, required: true },
-  nameOfBusiness: { type: String, default: "" },
-  natureOfBusiness: { type: String, default: "" },
-  rent: { type: Number, required: true },
-  advance: { type: Number, required: true },
-  agreementStartDate: { type: Date, required: true },
-  agreementEndDate: { type: Date, required: true },
-  annualIncrement: { type: Number, required: true },
-  paymentHistory: {
-    type: [PaymentSchema],
-    default: []
+const tenantSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  phone: String,
+  nameOfBusiness: String,
+  natureOfBusiness: String,
+  rent: Number,
+  advance: Number,
+  agreementStartDate: Date,
+  agreementEndDate: Date,
+  annualIncrement: Number,
+  paymentHistory: { 
+    type: [paymentSchema], 
+    default: [] 
   },
-  uploads: {
-    proofOfAddress: { type: String, default: "" },
-    proofOfBusiness: { type: String, default: "" },
-    proofOfIdentity: { type: String, default: "" },
-    agreementDraft: { type: String, default: "" },
-    agreementCopy: { type: String, default: "" }
-  },
-  rentStatus: { type: String, enum: ["due", "paid", "partial"], default: "due" },
-}, {
-  timestamps: true
+  propertyId: { type: mongoose.Schema.Types.ObjectId, ref: "Property" },
+  unit: { type: mongoose.Schema.Types.ObjectId, ref: "Unit" },
+  ownerEmail: String,
 });
 
-module.exports = mongoose.model("Tenant", TenantSchema);
+module.exports = mongoose.model("Tenant", tenantSchema);

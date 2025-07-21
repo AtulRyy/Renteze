@@ -6,7 +6,7 @@ const { requiresAuth } = require('express-openid-connect');
 const checkNewUser = require('./middleware/checkNewUser');
 const connectDB = require('./config/mongodb');
 const cors = require('cors');
-const propertyTenantRoute = require('./routes/propertyTenantRoute');
+// const propertyTenantRoute = require('./routes/propertyTenantRoute');
 const authRoutes = require('./routes/auth');
 
 // Connect to MongoDB
@@ -47,7 +47,7 @@ app.use(express.json());
 app.use('/assets', express.static('assets'));
 app.use('/uploads', express.static('uploads'));
 app.use('/invoices', express.static('invoices'));
-app.use('/property', propertyTenantRoute);
+// app.use('/property', propertyTenantRoute);
 
 // Routes
 const dashboardRoute = require('./routes/dashboardRoute');
@@ -76,7 +76,7 @@ app.use('/complete-profile', profileCompletionRoute);
 app.use('/create-property', createPropertyRoute);
 app.use('/property', viewPropertyRoute);
 app.use('/unit', unitRoute); 
-app.use('/add-tenant', addTenantRoute);
+app.use('/property', addTenantRoute);
 app.use('/invite-tenant', inviteTenantRoute);
 app.use('/tenant', tenantRoute);
 app.use('/rent-payments', rentPaymentsRoutes);

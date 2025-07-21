@@ -57,4 +57,72 @@ router.get('/owner-by-email', async (req, res) => {
   }
 });
 
+// ✅ Edit Tenant API
+router.put('/:tenantId', async (req, res) => {
+  const { tenantId } = req.params;
+  const ownerEmail = req.query.testEmail;
+  const updateData = req.body;
+
+  console.log("📥 Update Request:", updateData);
+
+  try {
+    const updatedTenant = await Tenant.findOneAndUpdate(
+      { _id: tenantId, ownerEmail },
+      { $set: updateData },
+      { new: true }
+    );
+
+    if (!updatedTenant) {
+      return res.status(404).json({ success: false, message: "Tenant not found" });
+    }
+
+    console.log("✅ Tenant updated:", updatedTenant);
+    res.status(200).json({ success: true, message: "Tenant updated successfully", tenant: updatedTenant });
+  } catch (error) {
+    console.error("❌ Update Failed:", error);
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
+// ✅ Delete Tenant API
+router.delete('/:tenantId', async (req, res) => {
+  const { tenantId } = req.params;
+  const ownerEmail = req.query.testEmail;
+
+  try {
+    const deletedTenant = await Tenant.findOneAndDelete({ _id: tenantId, ownerEmail });
+
+    if (!deletedTenant) {
+      return res.status(404).json({ success: false, message: "Tenant not found" });
+    }
+
+    console.log("✅ Tenant deleted:", deletedTenant);
+    res.status(200).json({ success: true, message: "Tenant deleted successfully" });
+  } catch (error) {
+    console.error("❌ Delete Failed:", error);
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
+router.get('/tenant/:tenantId', async (req, res) => {
+  const { tenantId } = req.params;
+  const { email } = req.query;
+
+  if (!email) return res.status(400).json({ message: 'Owner email is required' });
+
+  try {
+    const tenant = await Tenant.findOne({ _id: tenantId, ownerEmail: email });
+    if (!tenant) {
+      return res.status(404).json({ success: false, message: "Tenant not found" });
+    }
+    res.status(200).json({ success: true, tenant });
+  } catch (err) {
+    console.error("❌ Error fetching tenant:", err);
+    res.status(500).json({ success: false, message: err.message });
+  }
+});
+
+
+
+
 module.exports = router;
